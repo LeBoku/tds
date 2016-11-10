@@ -6,7 +6,8 @@
     <ProjectGuid>127321fa-d9f9-4f64-bfc2-30bd0ded02e3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>tds.py</StartupFile>
-    <SearchPath>pygameUtil\</SearchPath>
+    <SearchPath>
+    </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>tds</Name>
@@ -23,6 +24,52 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="character\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="config.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="base\controller.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="base\displayHandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="base\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mainLoop.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="character\characterController.py" />
+    <Compile Include="character\characterDisplay.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mapEntity\MapEntityController.py" />
+    <Compile Include="mapEntity\MapEntityDisplay.py" />
+    <Compile Include="mapEntity\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\mapCtrl.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\mapDisplay.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="player\playerController.py" />
+    <Compile Include="player\playerDisplay.py" />
+    <Compile Include="player\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pygameUtil\EventHandling.py" />
+    <Compile Include="pygameUtil\imageHelper.py" />
+    <Compile Include="pygameUtil\math.py" />
+    <Compile Include="pygameUtil\textManager.py" />
+    <Compile Include="pygameUtil\__init__.py" />
     <Compile Include="tds.py" />
   </ItemGroup>
   <ItemGroup>
@@ -39,11 +86,12 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="pygameUtil\pygameUtil.pyproj">
-      <Name>pygameUtil</Name>
-      <Project>{c1aa40b0-359c-4289-8e34-8ce3ea00587f}</Project>
-      <Private>True</Private>
-    </ProjectReference>
+    <Folder Include="base\" />
+    <Folder Include="character\" />
+    <Folder Include="mapEntity\" />
+    <Folder Include="map\" />
+    <Folder Include="player\" />
+    <Folder Include="pygameUtil\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

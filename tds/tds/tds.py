@@ -1,5 +1,6 @@
 import pygame
 
-import pygameUtil
+import mainLoop
 
-
+if __name__ == "__main__":
+	mainLoop.mainLoop()
