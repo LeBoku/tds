@@ -51,7 +51,7 @@
     <Compile Include="mapEntity\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="map\mapCtrl.py">
+    <Compile Include="map\mapController.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="map\mapDisplay.py">

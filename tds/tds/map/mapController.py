@@ -10,13 +10,19 @@ class MapController(Controller):
 		self.displayHandler = MapDisplay(self)
 		self.entities = []
 		self.bounds = mapBounds
-		
+		self.setUpEntities()
+
+	def setUpEntities(self):	
 		player = PlayerController(self)
+		player.coord = 500, 400
 		self.entities.append(player)
-		
 
 	def display(self):
+		display = self.displayHandler.display()
+
 		for entity in self.entities:
 			entityDisplay = entity.display()
+			
+			display.blit(entityDisplay, entity.coord)
 
-		return self.displayHandler.display()
+		return display

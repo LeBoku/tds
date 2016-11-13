@@ -5,7 +5,7 @@ import pygame
 import pygameUtil
 import pygameUtil.EventHandling
 
-from map.mapCtrl import MapController
+from map.mapController import MapController
 
 import config 
 
