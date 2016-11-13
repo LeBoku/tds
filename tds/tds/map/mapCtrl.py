@@ -11,7 +11,7 @@ class MapController(Controller):
 		self.entities = []
 		self.bounds = mapBounds
 		
-		player = PlayerController()
+		player = PlayerController(self)
 		self.entities.append(player)
 		
 

@@ -1,7 +1,7 @@
-from base.controller import Controller
+from character.characterController import CharacterController
 from player.playerDisplay import PlayerDisplay
 
-class PlayerController(Controller):
-	def __init__(self,):
-		super().__init__()
+class PlayerController(CharacterController):
+	def __init__(self, map):
+		super().__init__(map)
 		self.displayHandler = PlayerDisplay(self)

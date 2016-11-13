@@ -1,5 +1,8 @@
-from base.controller import Controller
+from mapEntity.MapEntityController import MapEntityController
 
-class CharacterController(Controller):
-	def __init__(self,):
-		return super().__init__()
+from character.characterDisplay import CharacterDisplay
+
+class CharacterController(MapEntityController):
+	def __init__(self, map):
+		super().__init__(map)
+		self.displayHandler = CharacterDisplay(self)
