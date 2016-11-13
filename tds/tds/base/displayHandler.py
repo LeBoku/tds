@@ -1,3 +1,6 @@
 class DisplayHandler:
-	def display(self,display):
+	def __init__(self, controller):
+		self.controller = controller
+
+	def display(self):
 		pass

@@ -5,7 +5,7 @@ import pygame
 import pygameUtil
 import pygameUtil.EventHandling
 
-from map.mapCtrl import MapCtrl
+from map.mapCtrl import MapController
 
 import config 
 
@@ -16,14 +16,14 @@ display = pygame.display.set_mode(config.resolution)
 clock = pygame.time.Clock()
 eventHandler = pygameUtil.EventHandling.EventHandler.get()
 
-map = MapCtrl()
+map = MapController()
 
 def mainLoop():
 	while isRunning:
 		eventHandler.postCustomEvents()
 		eventHandler.handleEvents()
 
-		mapDisplay = map.display(display)
+		mapDisplay = map.display()
 		
 		clock.tick(config.fps)
 		display.blit(mapDisplay, (0,0))

@@ -2,12 +2,12 @@ from base.displayHandler import DisplayHandler
 
 class Controller:
 	def __init__(self):
-		self.displayHandler = DisplayHandler()
+		self.displayHandler = DisplayHandler(self)
 		self.registerEvents()
 		return super().__init__()
 
-	def display(self, display):
-		return self.displayHandler.display(display)
+	def display(self):
+		return self.displayHandler.display()
 
 	def registerEvents(self):
 		pass

@@ -1,5 +1,7 @@
 from base.controller import Controller
+from player.playerDisplay import PlayerDisplay
 
 class PlayerController(Controller):
 	def __init__(self,):
-		return super().__init__()
+		super().__init__()
+		self.displayHandler = PlayerDisplay(self)

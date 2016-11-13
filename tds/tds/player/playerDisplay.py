@@ -1,5 +1,4 @@
 from base.displayHandler import DisplayHandler
 
-class PlayerController(DisplayHandler):
-	def __init__(self,):
-		return super().__init__()
+class PlayerDisplay(DisplayHandler):
+	pass
