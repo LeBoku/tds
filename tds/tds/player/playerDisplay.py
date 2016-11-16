@@ -3,15 +3,13 @@ import pygame.gfxdraw
 import pygame.draw
 
 from character.characterDisplay import CharacterDisplay
-
+from pygameUtil import imageHelper
 
 class PlayerDisplay(CharacterDisplay):
 	def setUpBaseImage(self):
 		super().setUpBaseImage()
 
-		display = pygame.Surface((10, 10)).convert_alpha()
-		display.fill((255,255,255,0))
-		
+		display = imageHelper.createAlphaSurface((10, 10))
 		pygame.gfxdraw.filled_polygon(display, [(5,1), (8,10), (2,10)], (0,0,0))
 		
 		self.baseImage = display 

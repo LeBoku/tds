@@ -46,6 +46,9 @@
     <Compile Include="character\characterDisplay.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="weapon\weaponBaseImages.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="weapon\weaponController.py" />
     <Compile Include="weapon\weaponDisplay.py" />
     <Compile Include="weapon\__init__.py" />

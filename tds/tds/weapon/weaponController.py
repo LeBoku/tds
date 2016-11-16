@@ -9,3 +9,4 @@ class WeaponController(MapEntityController):
 	def __init__(self, map):
 		super().__init__(map)
 		self.displayHandler = WeaponDisplay(self)
+		self.character = None

@@ -4,6 +4,9 @@ from config import mapBounds
 from map.mapDisplay import MapDisplay
 from player.playerController import PlayerController
 
+from weapon.weaponController import WeaponController
+from weapon import weaponBaseImages 
+
 class MapController(Controller):
 	def __init__(self):
 		super().__init__()
@@ -15,10 +18,23 @@ class MapController(Controller):
 
 		self.setUpEntities()
 
+	def addEntity(self, entity):
+		self.entities.append(entity)
+
 	def setUpEntities(self):	
 		self.player = PlayerController(self)
 		self.player.coord = [500, 400]
-		self.entities.append(self.player)
+		
+		spear = WeaponController(self)
+		spear.setBaseImage(weaponBaseImages.spear())
+
+		spear.coord = [510, 400]
+
+		self.player.weapon = spear
+
+		self.addEntity(self.player)
+		self.addEntity(spear)
+		
 
 	def display(self):
 		display = self.displayHandler.display()

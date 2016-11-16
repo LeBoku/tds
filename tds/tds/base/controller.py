@@ -6,6 +6,9 @@ class Controller:
 		self.registerEvents()
 		return super().__init__()
 
+	def setBaseImage(self, baseImage):
+		self.displayHandler.baseImage = baseImage
+
 	def display(self):
 		return self.displayHandler.display()
 
