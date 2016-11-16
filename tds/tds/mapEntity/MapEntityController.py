@@ -5,5 +5,5 @@ class MapEntityController(Controller):
 	def __init__(self, map):
 		super().__init__()
 		self.map = map
-		self.coord = [0, 0]
+		self.coord = 0, 0
 		self.displayHandler = MapEntityDisplay(self)

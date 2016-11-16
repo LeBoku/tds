@@ -11,11 +11,12 @@ class MapController(Controller):
 		self.entities = []
 		self.bounds = mapBounds
 		self.setUpEntities()
+		self.player = None
 
 	def setUpEntities(self):	
-		player = PlayerController(self)
-		player.coord = 500, 400
-		self.entities.append(player)
+		self.player = PlayerController(self)
+		self.player.coord = 500, 400
+		self.entities.append(self.player)
 
 	def display(self):
 		display = self.displayHandler.display()
