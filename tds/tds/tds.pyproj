@@ -46,6 +46,9 @@
     <Compile Include="character\characterDisplay.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="weapon\weaponController.py" />
+    <Compile Include="weapon\weaponDisplay.py" />
+    <Compile Include="weapon\__init__.py" />
     <Compile Include="mapEntity\MapEntityController.py" />
     <Compile Include="mapEntity\MapEntityDisplay.py" />
     <Compile Include="mapEntity\__init__.py">
@@ -88,6 +91,7 @@
   <ItemGroup>
     <Folder Include="base\" />
     <Folder Include="character\" />
+    <Folder Include="weapon\" />
     <Folder Include="mapEntity\" />
     <Folder Include="map\" />
     <Folder Include="player\" />

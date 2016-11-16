@@ -1,5 +1,3 @@
-import pygame.transform
-
 from base.controller import Controller
 from mapEntity.MapEntityDisplay import MapEntityDisplay
 
@@ -12,6 +10,3 @@ class MapEntityController(Controller):
 		self.coord = [0, 0]
 		self.angle = 0
 		self.displayHandler = MapEntityDisplay(self)
-
-	def display(self):
-		return pygame.transform.rotozoom(super().display(), self.angle, 1)

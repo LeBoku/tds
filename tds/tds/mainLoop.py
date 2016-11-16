@@ -11,7 +11,6 @@ import config
 
 isRunning = True
 
-
 display = pygame.display.set_mode(config.resolution)
 clock = pygame.time.Clock()
 eventHandler = pygameUtil.EventHandling.EventHandler.get()
