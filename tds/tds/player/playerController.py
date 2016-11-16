@@ -1,9 +1,12 @@
 import pygame.locals
+import pygame.mouse
 
 from character.characterController import CharacterController
 from player.playerDisplay import PlayerDisplay
 
 from pygameUtil.EventHandling import EventListener
+
+import pygameUtil.math
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
@@ -11,21 +14,27 @@ class PlayerController(CharacterController):
 		self.speed = 5
 		self.displayHandler = PlayerDisplay(self)
 
+	def display(self):
+		self.angle = pygameUtil.math.calcAngleBetweenPositions(self.coord, pygame.mouse.get_pos())
+		return super().display()
+
 	def registerEvents(self):
 		super().registerEvents()
-		
+		self.registerMovement()
+
+	def registerMovement(self):
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
-		def onMouseDown(event):
+		def li(event):
 			self.coord[1] -= self.speed		
 
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_d)
-		def onMouseDown(event):
+		def li(event):
 			self.coord[0] += self.speed
 
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_s)
-		def onMouseDown(event):
+		def li(event):
 			self.coord[1] += self.speed
 	
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_a)
-		def onMouseDown(event):
+		def li(event):
 			self.coord[0] -= self.speed
