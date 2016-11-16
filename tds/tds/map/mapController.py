@@ -7,15 +7,17 @@ from player.playerController import PlayerController
 class MapController(Controller):
 	def __init__(self):
 		super().__init__()
-		self.displayHandler = MapDisplay(self)
-		self.entities = []
-		self.bounds = mapBounds
-		self.setUpEntities()
 		self.player = None
+		self.entities = []
+
+		self.displayHandler = MapDisplay(self)
+		self.bounds = mapBounds
+
+		self.setUpEntities()
 
 	def setUpEntities(self):	
 		self.player = PlayerController(self)
-		self.player.coord = 500, 400
+		self.player.coord = [500, 400]
 		self.entities.append(self.player)
 
 	def display(self):
@@ -23,7 +25,10 @@ class MapController(Controller):
 
 		for entity in self.entities:
 			entityDisplay = entity.display()
-			
-			display.blit(entityDisplay, entity.coord)
+
+			entityRect = entityDisplay.get_rect()
+			entityRect.center = entity.coord;
+
+			display.blit(entityDisplay, entityRect.topleft)
 
 		return display
