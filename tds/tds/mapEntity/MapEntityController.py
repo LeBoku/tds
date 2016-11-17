@@ -9,4 +9,6 @@ class MapEntityController(Controller):
 		self.map = map
 		self.coord = [0, 0]
 		self.angle = 0
+
+	def setUpDisplayHandler(self):
 		self.displayHandler = MapEntityDisplay(self)

@@ -2,9 +2,12 @@ from base.displayHandler import DisplayHandler
 
 class Controller:
 	def __init__(self):
-		self.displayHandler = DisplayHandler(self)
 		self.registerEvents()
+		self.setUpDisplayHandler()
 		return super().__init__()
+
+	def setUpDisplayHandler(self):
+		self.displayHandler = DisplayHandler(self)
 
 	def setBaseImage(self, baseImage):
 		self.displayHandler.baseImage = baseImage

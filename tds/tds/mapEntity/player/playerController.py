@@ -1,8 +1,8 @@
 import pygame.locals
 import pygame.mouse
 
-from character.characterController import CharacterController
-from player.playerDisplay import PlayerDisplay
+from mapEntity.character.characterController import CharacterController
+from .playerDisplay import PlayerDisplay
 
 from pygameUtil.EventHandling import EventListener
 
@@ -12,6 +12,8 @@ class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
 		self.speed = 5
+
+	def setUpDisplayHandler(self):
 		self.displayHandler = PlayerDisplay(self)
 
 	def display(self):

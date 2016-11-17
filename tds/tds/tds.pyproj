@@ -24,7 +24,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="character\__init__.py">
+    <Compile Include="imageStore\character.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="imageStore\util.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="imageStore\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mapEntity\character\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="config.py">
@@ -42,16 +51,12 @@
     <Compile Include="mainLoop.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="character\characterController.py" />
-    <Compile Include="character\characterDisplay.py">
+    <Compile Include="mapEntity\character\characterController.py" />
+    <Compile Include="imageStore\weapons.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="weapon\weaponBaseImages.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="weapon\weaponController.py" />
-    <Compile Include="weapon\weaponDisplay.py" />
-    <Compile Include="weapon\__init__.py" />
+    <Compile Include="mapEntity\weapon\weaponController.py" />
+    <Compile Include="mapEntity\weapon\__init__.py" />
     <Compile Include="mapEntity\MapEntityController.py" />
     <Compile Include="mapEntity\MapEntityDisplay.py" />
     <Compile Include="mapEntity\__init__.py">
@@ -66,9 +71,9 @@
     <Compile Include="map\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="player\playerController.py" />
-    <Compile Include="player\playerDisplay.py" />
-    <Compile Include="player\__init__.py">
+    <Compile Include="mapEntity\player\playerController.py" />
+    <Compile Include="mapEntity\player\playerDisplay.py" />
+    <Compile Include="mapEntity\player\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="pygameUtil\EventHandling.py" />
@@ -93,11 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="base\" />
-    <Folder Include="character\" />
-    <Folder Include="weapon\" />
+    <Folder Include="imageStore\" />
+    <Folder Include="mapEntity\character\" />
+    <Folder Include="mapEntity\weapon\" />
     <Folder Include="mapEntity\" />
     <Folder Include="map\" />
-    <Folder Include="player\" />
+    <Folder Include="mapEntity\player\" />
     <Folder Include="pygameUtil\" />
   </ItemGroup>
   <PropertyGroup>

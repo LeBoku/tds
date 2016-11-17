@@ -5,9 +5,9 @@ from config import resolution
 
 class MapDisplay(DisplayHandler):
 	def __init__(self, controller):
+		super().__init__(controller)
 		self.backgroundColor = 255, 255, 255
 		self.baseDisplay =  pygame.surface.Surface(resolution)
-		super().__init__(controller)
 
 	def display(self):
 		mapDisplay = self.baseDisplay.copy()
