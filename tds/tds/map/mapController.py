@@ -22,21 +22,19 @@ class MapController(Controller):
 
 	def addEntity(self, entity):
 		self.entities.append(entity)
+		return entity
 
+	def removeEntity(self, entity):
+		self.entities.remove(entity)
+	
 	def setUpEntities(self):	
-		self.player = PlayerController(self)
+		self.player = self.addEntity(PlayerController(self))
 		self.player.coord = [500, 400]
 		
 		spear = WeaponController(self)
 		spear.setBaseImage(weapons.spear())
-
 		spear.coord = [510, 400]
-
 		self.player.weapon = spear
-
-		self.addEntity(self.player)
-		self.addEntity(spear)
-		
 
 	def display(self):
 		display = self.displayHandler.display()

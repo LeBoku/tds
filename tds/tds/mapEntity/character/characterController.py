@@ -10,4 +10,9 @@ class CharacterController(MapEntityController):
 		return self._weapon
 	@weapon.setter
 	def weapon(self, weapon):
+		if(self.weapon is not None):
+			self.map.removeEntity(self.weapon)
+
+		self.map.addEntity(weapon)
+
 		self._weapon = weapon
