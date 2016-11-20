@@ -33,7 +33,6 @@ class MapController(Controller):
 		
 		spear = WeaponController(self)
 		spear.setBaseImage(weapons.spear())
-		spear.coord = [510, 400]
 		self.player.weapon = spear
 
 	def display(self):

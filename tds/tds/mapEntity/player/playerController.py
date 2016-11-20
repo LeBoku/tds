@@ -5,8 +5,9 @@ from mapEntity.character.characterController import CharacterController
 from .playerDisplay import PlayerDisplay
 
 from pygameUtil.EventHandling import EventListener
+from pygameUtil import math_
 
-import pygameUtil.math
+
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
@@ -17,7 +18,7 @@ class PlayerController(CharacterController):
 		self.displayHandler = PlayerDisplay(self)
 
 	def display(self):
-		self.angle = pygameUtil.math.calcAngleBetweenPositions(self.coord, pygame.mouse.get_pos())
+		self.angle = math_.calcAngleBetweenPositions(self.coord, pygame.mouse.get_pos())
 		return super().display()
 
 	def registerEvents(self):

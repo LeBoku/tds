@@ -78,7 +78,7 @@
     </Compile>
     <Compile Include="pygameUtil\EventHandling.py" />
     <Compile Include="pygameUtil\imageHelper.py" />
-    <Compile Include="pygameUtil\math.py" />
+    <Compile Include="pygameUtil\math_.py" />
     <Compile Include="pygameUtil\textManager.py" />
     <Compile Include="pygameUtil\__init__.py" />
     <Compile Include="tds.py" />

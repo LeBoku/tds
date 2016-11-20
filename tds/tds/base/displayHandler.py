@@ -5,6 +5,10 @@ class DisplayHandler:
 
 		self.setUpBaseImage()
 
+	@property
+	def dimensions(self):
+		return self.baseImage.get_size()
+
 	def setUpBaseImage(self):
 		pass
 
