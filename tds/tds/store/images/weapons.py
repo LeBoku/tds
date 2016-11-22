@@ -2,7 +2,7 @@ import pygame
 import pygame.draw
 import pygame.gfxdraw
 
-from imageStore import util
+from store.images import util
 
 def spear():
 	color = (0,0,0)

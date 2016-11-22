@@ -1,7 +1,7 @@
 import pygame
 import pygame.gfxdraw
 
-from imageStore import util
+from store.images import util
 
 def player():
 	charImage = util.createAlphaSurface((10, 10))

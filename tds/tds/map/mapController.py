@@ -5,7 +5,7 @@ from map.mapDisplay import MapDisplay
 from mapEntity.player.playerController import PlayerController
 
 from mapEntity.weapon.weaponController import WeaponController
-from imageStore import weapons 
+from store.images import weapons 
 
 class MapController(Controller):
 	def __init__(self):

@@ -24,13 +24,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="imageStore\character.py">
+    <Compile Include="store\images\character.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="imageStore\util.py">
+    <Compile Include="store\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="imageStore\__init__.py">
+    <Compile Include="store\moveSet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\images\util.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mapEntity\character\moveSet.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mapEntity\character\__init__.py">
@@ -52,7 +61,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mapEntity\character\characterController.py" />
-    <Compile Include="imageStore\weapons.py">
+    <Compile Include="store\images\weapons.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mapEntity\weapon\weaponController.py" />
@@ -98,13 +107,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="base\" />
-    <Folder Include="imageStore\" />
+    <Folder Include="store\" />
     <Folder Include="mapEntity\character\" />
     <Folder Include="mapEntity\weapon\" />
     <Folder Include="mapEntity\" />
     <Folder Include="map\" />
     <Folder Include="mapEntity\player\" />
     <Folder Include="pygameUtil\" />
+    <Folder Include="store\images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
