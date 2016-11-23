@@ -4,4 +4,4 @@ from base.displayHandler import DisplayHandler
 
 class MapEntityDisplay(DisplayHandler):
 	def display(self):
-		return pygame.transform.rotozoom(super().display(), self.controller.angle, 1)
+		return pygame.transform.rotozoom(super().display(), self.controller.angle.angle_to([0,0]), 1)

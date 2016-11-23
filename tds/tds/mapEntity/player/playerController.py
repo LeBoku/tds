@@ -1,5 +1,6 @@
 import pygame.locals
 import pygame.mouse
+from pygame.math import Vector2
 
 from mapEntity.character.characterController import CharacterController
 from .playerDisplay import PlayerDisplay
@@ -18,7 +19,8 @@ class PlayerController(CharacterController):
 		self.displayHandler = PlayerDisplay(self)
 
 	def display(self):
-		self.angle = math_.calcAngleBetweenPositions(self.coord, pygame.mouse.get_pos())
+		mousePosVector = Vector2(pygame.mouse.get_pos())
+		self.angle = mousePosVector - self.coord
 		return super().display()
 
 	def registerEvents(self):
@@ -28,16 +30,24 @@ class PlayerController(CharacterController):
 	def registerMovement(self):
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
 		def li(event):
-			self.coord[1] -= self.speed		
+			movement = Vector2(0, -5)
+			movement.scale_to_length(5)
+			self.coord += movement
 
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_d)
 		def li(event):
-			self.coord[0] += self.speed
+			movement = Vector2(5, 0)
+			movement.scale_to_length(5)
+			self.coord += movement
 
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_s)
 		def li(event):
-			self.coord[1] += self.speed
+			movement = Vector2(0, 5)	
+			movement.scale_to_length(5)
+			self.coord += movement
 	
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_a)
 		def li(event):
-			self.coord[0] -= self.speed
+			movement = Vector2(-5, 0)
+			movement.scale_to_length(5)
+			self.coord += movement

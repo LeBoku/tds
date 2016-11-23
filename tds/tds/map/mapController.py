@@ -1,3 +1,5 @@
+from pygame.math import Vector2
+
 from base.controller import Controller
 from config import mapBounds
 
@@ -30,7 +32,7 @@ class MapController(Controller):
 	
 	def setUpEntities(self):	
 		self.player = self.addEntity(PlayerController(self))
-		self.player.coord = [500, 400]
+		self.player.coord =  Vector2(500, 400)
 		
 		spear = WeaponController(self)
 		spear.setBaseImage(weapons.spear())

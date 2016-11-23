@@ -3,22 +3,20 @@ from copy import deepcopy
 
 from pygame.math import Vector2
 
-Move = namedtuple("Move", ["frames"])
-
 def spear():
 	move = getMoveBase()
-	move.frames.extend(animate({
+	move["frames"].extend(animate({
 			"weapon": Vector2(0, 0)
 		}, {
 			"weapon": Vector2(0, 15)
 		}, 3))
-	move.frames.extend(animate({
+	move["frames"].extend(animate({
 			"weapon": Vector2(0, 15)
 		}, {
 			"weapon": Vector2(0, -30)
 		}, 3))
 
-	move.frames.extend(animate({
+	move["frames"].extend(animate({
 			"weapon": Vector2(0, -30)
 		}, {
 			"weapon": Vector2(0, 0)
@@ -27,7 +25,7 @@ def spear():
 	return move
 
 def getMoveBase():
-	move = Move([])
+	move = {"frames": []}
 	return move
 
 def animate(fromState: Vector2, toState: Vector2, frameCount):
