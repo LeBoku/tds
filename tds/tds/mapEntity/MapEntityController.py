@@ -10,16 +10,7 @@ class MapEntityController(Controller):
 		super().__init__()
 		self.map = map
 		self.coord = Vector2(0, 0)
-		self._angle = None
-		self.angle = Vector2(0, -1)
-
-	@property
-	def angle(self):
-		return self._angle
-	@angle.setter
-	def angle(self, angle):
-		angle.normalize_ip()
-		self._angle = angle
+		self.angle = 0
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = MapEntityDisplay(self)

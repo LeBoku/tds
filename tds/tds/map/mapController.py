@@ -36,7 +36,7 @@ class MapController(Controller):
 		
 		spear = WeaponController(self)
 		spear.setBaseImage(weapons.spear())
-		self.player.moveSetController.registerMove("forward_attack", moveSets.spear())
+		self.player.moveSetController.registerMove("attack_forward", moveSets.spear())
 		self.player.weapon = spear
 
 	def display(self):

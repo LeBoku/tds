@@ -11,16 +11,19 @@ class WeaponController(MapEntityController):
 	def __init__(self, map):
 		super().__init__(map)
 		self.character = None
-		self.offsetVector = Vector2(-10, 0)
+		self.offsetVector = Vector2(10, 0)
 		self.offsetAngle = 0
 
 	def alignToCharacter(self):
-		offset = self.offsetVector.rotate(180 - self.character.angle.angle_to(Vector2(0, -1)))
+		movement = self.character.moveSetController.getMovementFor("weapon")
+		baseOffset = self.offsetVector + movement
 
-		self.coord = self.character.coord + offset
-		self.coord += self.character.moveSetController.getMovementFor("weapon")
+		characterAngle = self.character.angle
+		offset = baseOffset.rotate(180 - characterAngle)
 
-		self.angle = self.character.angle.rotate(self.offsetAngle)
+		self.coord = self.character.coord - offset
+
+		self.angle = self.character.angle + self.offsetAngle
 
 	def display(self):
 		self.alignToCharacter()

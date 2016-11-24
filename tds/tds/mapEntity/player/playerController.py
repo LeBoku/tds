@@ -19,15 +19,22 @@ class PlayerController(CharacterController):
 		self.displayHandler = PlayerDisplay(self)
 
 	def display(self):
-		mousePosVector = Vector2(pygame.mouse.get_pos())
-		self.angle = mousePosVector - self.coord
+		self.updateAngle()
 		return super().display()
+
+	def updateAngle(self):
+		mousePosVector = Vector2(pygame.mouse.get_pos())
+		self.angle = (mousePosVector - self.coord).angle_to(Vector2(0, -1)) % 360
 
 	def registerEvents(self):
 		super().registerEvents()
 		self.registerMovement()
 
 	def registerMovement(self):
+		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
+		def startAttack(event):
+			self.moveSetController.startMove("attack_forward")
+
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
 		def li(event):
 			movement = Vector2(0, -5)
