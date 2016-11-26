@@ -39,11 +39,11 @@ class MapController(Controller):
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
 		
 		self.createSubEntity("leftHand", character.hand(), Vector2(-5, 0))
-		rightHand = self.createSubEntity("rightHand", character.hand(), Vector2(6, 0))
+		rightHand = self.createSubEntity("rightHand", character.hand(), Vector2(5, 0))
 
-		self.createSubEntity("weapon", weapons.spear(), Vector2(0, 0), rightHand)
+		self.createSubEntity("weapon", weapons.spear(), parent=rightHand)
 
-	def createSubEntity(self, name, image, offset, parent=None):
+	def createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
 		if (parent is None):
 			parent = self.player
 
