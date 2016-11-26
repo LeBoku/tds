@@ -15,7 +15,8 @@ class WeaponController(MapEntityController):
 		self.offsetAngle = 0
 
 	def alignToCharacter(self):
-		movement = self.character.moveSetController.getMovementFor("weapon")
+		offset = self.character.moveSetController.getOffsetForEntity("weapon")
+		movement = offset.vector
 		baseOffset = self.offsetVector + movement
 
 		characterAngle = self.character.angle

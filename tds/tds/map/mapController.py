@@ -9,6 +9,7 @@ from mapEntity.player.playerController import PlayerController
 from mapEntity.weapon.weaponController import WeaponController
 from store.images import weapons 
 from store import moveSets
+import store.moveSets.spear
 
 class MapController(Controller):
 	def __init__(self):
@@ -36,7 +37,7 @@ class MapController(Controller):
 		
 		spear = WeaponController(self)
 		spear.setBaseImage(weapons.spear())
-		self.player.moveSetController.registerMove("attack_forward", moveSets.spear())
+		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
 		self.player.weapon = spear
 
 	def display(self):

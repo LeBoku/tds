@@ -30,10 +30,22 @@
     <Compile Include="store\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="store\moveSets.py">
+    <Compile Include="store\moveSets\entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\moveSets\move.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\images\util.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\moveSets\offset.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\moveSets\spear.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\moveSets\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\__init__.py">
@@ -115,6 +127,7 @@
     <Folder Include="mapEntity\player\" />
     <Folder Include="pygameUtil\" />
     <Folder Include="store\images\" />
+    <Folder Include="store\moveSets\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

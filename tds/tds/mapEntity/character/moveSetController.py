@@ -1,40 +1,27 @@
-from copy import copy
-
 from pygame.math import Vector2
+
+from store.moveSets.offset import Offset
 
 class MoveSetController:
 	def __init__(self, **kwargs):
 		self.moves = {}
-		self.activeMoves = {}
 
 	def moveOn(self):
-		movesToStop = []
+		for key, move in self.moves.items():
+			move.moveOn()
 
-		for key, move in self.activeMoves.items():
-			if(move["activeFrameNr"] < move["frameCount"]):
-				move["activeFrameNr"] += 1
-			else:
-				movesToStop.append(key)
-			
-		for move in movesToStop:
-			self.activeMoves.pop(move)
+	def getOffsetForEntity(self, entity):
+		offset = Offset()
 
-	def getMovementFor(self, entity):
-		pos = Vector2(0,0)
+		for key, move in self.moves.items():
+			if move.isActive:
+				offset = move.getOffsetForEntity(entity)
 
-		for key, move in self.activeMoves.items():
-			activeFrame = move["frames"][move["activeFrameNr"]-1]
-			if entity in activeFrame:
-				pos = activeFrame[entity]
-
-		return pos
+		return offset
 
 	def startMove(self, name):
-		self.activeMoves[name] = copy(self.moves[name])
-		self.activeMoves[name]["activeFrameNr"] = 0
+		self.moves[name].start()
 
 	def registerMove(self, name, move):
-		move["activeFrameNr"] = None
-		move["frameCount"] = len(move["frames"])
 		self.moves[name] = move
 
