@@ -21,18 +21,8 @@ class MoveSetController:
 
 		return offset
 
-	def isMoveActive(self, name):
-		return self.moves[name].isActive
-
-	def startMove(self, name):
-		self.moves[name].start()
-
-	def loopMove(self, name):
-		self.moves[name].startLoop()
-
-	def stopMove(self, name):
-		self.moves[name].stop()
+	def getMove(self, name):
+		return self.moves[name]
 
 	def registerMove(self, name, move):
 		self.moves[name] = move
-

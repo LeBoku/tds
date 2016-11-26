@@ -31,15 +31,20 @@ class PlayerController(CharacterController):
 	def registerMovement(self):
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
-			self.moveSetController.startMove("attack_forward")
+			move = self.moveSetController.getMove("attack_forward")
+			if not move.isActive:
+				move.start()
+			else:
+				move.listenForEnd(lambda: move.start())
+			
 
 		@EventListener(pygame.locals.KEYDOWN)
 		def li(event):
-			self.moveSetController.loopMove("move")
+			self.moveSetController.getMove("move").startLoop()
 
 		@EventListener(pygame.locals.KEYUP)
 		def li(event):
-			self.moveSetController.stopMove("move")
+			self.moveSetController.getMove("move").stop()
 
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
 		def li(event):
