@@ -1,6 +1,6 @@
 from pygame.math import Vector2
 
-from store.moveSets.offset import Offset
+from store.moveSets._offset import Offset
 
 class MoveSetController:
 	def __init__(self, **kwargs):

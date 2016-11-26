@@ -1,6 +1,6 @@
 from pygame.math import Vector2
 
-from .offset import Offset
+from ._offset import Offset
 
 class Entity:
 	def __init__(self, startVector=Vector2(0,0)):

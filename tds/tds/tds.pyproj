@@ -30,16 +30,16 @@
     <Compile Include="store\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="store\moveSets\entity.py">
+    <Compile Include="store\moveSets\_entity.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="store\moveSets\move.py">
+    <Compile Include="store\moveSets\_move.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\images\util.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="store\moveSets\offset.py">
+    <Compile Include="store\moveSets\_offset.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\moveSets\spear.py">

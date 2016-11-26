@@ -1,5 +1,5 @@
-from .entity import Entity
-from .move import Move
+from ._entity import Entity
+from ._move import Move
 
 def forwardAttack():
 	rightHand = Entity()
