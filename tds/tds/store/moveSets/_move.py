@@ -4,6 +4,7 @@ class Move:
 		self.activeFrameNr = None
 		self.moveLength = 0
 		self.loop = False
+		self.mayRestart = False
 		
 		for key, entity in self.entities.items():
 			lenght = len(entity.frames)
@@ -14,12 +15,14 @@ class Move:
 		return self.activeFrameNr is not None
 
 	def start(self):
-		self.activeFrameNr = -1
-		self.loop = False
+		if not self.isActive or self.mayRestart:
+			self.activeFrameNr = -1
+			self.loop = False
 
 	def startLoop(self):
-		self.activeFrameNr = -1
-		self.loop = True
+		if not self.isActive or self.mayRestart:
+			self.activeFrameNr = -1
+			self.loop = True
 
 	def stop(self):
 		self.activeFrameNr = None

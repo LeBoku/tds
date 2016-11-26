@@ -37,6 +37,10 @@ class PlayerController(CharacterController):
 		def li(event):
 			self.moveSetController.loopMove("move")
 
+		@EventListener(pygame.locals.KEYUP)
+		def li(event):
+			self.moveSetController.stopMove("move")
+
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
 		def li(event):
 			movement = Vector2(0, -5)

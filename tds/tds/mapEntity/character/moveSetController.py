@@ -21,6 +21,9 @@ class MoveSetController:
 
 		return offset
 
+	def isMoveActive(self, name):
+		return self.moves[name].isActive
+
 	def startMove(self, name):
 		self.moves[name].start()
 
