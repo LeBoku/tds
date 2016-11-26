@@ -29,15 +29,16 @@ class PlayerController(CharacterController):
 		self.registerMovement()
 
 	def registerMovement(self):
+		qWindow = 20
+	
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
 			move = self.moveSetController.getMove("attack_forward")
 			if not move.isActive:
 				move.start()
-			else:
+			elif move.framesLeft < qWindow:
 				move.listenForEnd(lambda: move.start())
 			
-
 		@EventListener(pygame.locals.KEYDOWN)
 		def li(event):
 			self.moveSetController.getMove("move").startLoop()

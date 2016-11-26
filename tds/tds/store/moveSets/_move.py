@@ -25,6 +25,11 @@ class Move:
 	def isActive(self):
 		return self.activeFrameNr is not None
 
+	@property
+	def framesLeft(self):
+		if(self.isActive):
+			return self.moveLength - self.activeFrameNr
+
 	def start(self):
 		if not self.isActive:
 			self._start()
