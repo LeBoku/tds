@@ -12,8 +12,20 @@ class SubEntity(MapEntityController):
 		super().__init__(map)
 		self.parent = None
 		self.name = None
-		self.offsetVector = Vector2(10, 0)
+		self.offsetVector = Vector2(0, 0)
 		self.offsetAngle = 0
+		self._moveSetController = None
+
+	@property
+	def moveSetController(self):
+		if self._moveSetController is None:
+			return self.parent.moveSetController
+		else:
+			return self._moveSetController
+
+	@moveSetController.setter
+	def moveSetController(self, controller):
+		self._moveSetController = controller
 
 	def alignToParent(self):
 		offset = self.parent.moveSetController.getOffsetForEntity(self.name)

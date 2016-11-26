@@ -17,8 +17,13 @@ class Move:
 
 	def moveOn(self):
 		if self.isActive:
-			self.activeFrameNr += 1
+			if(self.activeFrameNr < self.moveLength):
+				self.activeFrameNr += 1
+			else:
+				self.activeFrameNr = None
+
 			
 	def getOffsetForEntity(self, entity):
 		if self.isActive:
-			return self.entities[entity].getOffsetForFrame(self.activeFrameNr)
+			if(entity in self.entities):
+				return self.entities[entity].getOffsetForFrame(self.activeFrameNr)

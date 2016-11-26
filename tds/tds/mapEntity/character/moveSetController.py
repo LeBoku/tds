@@ -15,7 +15,9 @@ class MoveSetController:
 
 		for key, move in self.moves.items():
 			if move.isActive:
-				offset = move.getOffsetForEntity(entity)
+				moveOffset = move.getOffsetForEntity(entity)
+				if moveOffset is not None:
+					offset = moveOffset
 
 		return offset
 

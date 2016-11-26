@@ -3,7 +3,7 @@ from pygame.math import Vector2
 from .offset import Offset
 
 class Entity:
-	def __init__(self, startVector):
+	def __init__(self, startVector=Vector2(0,0)):
 		self.frames = [Offset(Vector2(startVector))]
 		self.defaultOffset = Offset()
 
@@ -16,6 +16,9 @@ class Entity:
 	def repeatFrame(self, count=1):
 		for i in range(count):
 			self.frames.append(self.frames[-1].copy())
+
+	def backToDefault(self, frameCount):
+		self.animateTo(self.defaultOffset.vector, frameCount)
 
 	def animateTo(self, toVector, frameCount=1):
 		toFrame = Offset(Vector2(toVector))

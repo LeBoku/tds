@@ -7,7 +7,8 @@ from map.mapDisplay import MapDisplay
 from mapEntity.player.playerController import PlayerController
 
 from mapEntity.subEntity.subEntity import SubEntity
-from store.images import weapons 
+from store.images import weapons, character
+
 from store import moveSets
 import store.moveSets.spear
 
@@ -33,12 +34,26 @@ class MapController(Controller):
 	
 	def setUpEntities(self):	
 		self.player = self.addEntity(PlayerController(self))
-		self.player.coord =  Vector2(500, 400)
+		self.player.coord = Vector2(500, 400)
 		
-		spear = SubEntity(self)
-		spear.setBaseImage(weapons.spear())
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
-		self.player.addSubEntity("weapon", spear)
+		
+		self.createSubEntity("leftHand", character.hand(), Vector2(-5, 0))
+		rightHand = self.createSubEntity("rightHand", character.hand(), Vector2(6, 0))
+
+		self.createSubEntity("weapon", weapons.spear(), Vector2(0, 0), rightHand)
+
+	def createSubEntity(self, name, image, offset, parent=None):
+		if (parent is None):
+			parent = self.player
+
+		e = SubEntity(self)
+		e.offsetVector = offset
+		e.setBaseImage(image)
+
+		parent.addSubEntity(name, e)
+
+		return e
 
 	def display(self):
 		display = self.displayHandler.display()
@@ -46,7 +61,7 @@ class MapController(Controller):
 		for entity in self.entities:
 			entityDisplay = entity.display()
 			entityRect = entityDisplay.get_rect()
-			entityRect.center = entity.coord;
+			entityRect.center = entity.coord
 
 			display.blit(entityDisplay, entityRect.topleft)
 
