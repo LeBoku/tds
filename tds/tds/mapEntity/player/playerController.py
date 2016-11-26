@@ -33,6 +33,10 @@ class PlayerController(CharacterController):
 		def startAttack(event):
 			self.moveSetController.startMove("attack_forward")
 
+		@EventListener(pygame.locals.KEYDOWN)
+		def li(event):
+			self.moveSetController.loopMove("move")
+
 		@EventListener("KEY_IS_DOWN", key=pygame.locals.K_w)
 		def li(event):
 			movement = Vector2(0, -5)

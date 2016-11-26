@@ -11,6 +11,7 @@ from store.images import weapons, character
 
 from store import moveSets
 import store.moveSets.spear
+import store.moveSets.character
 
 class MapController(Controller):
 	def __init__(self):
@@ -37,6 +38,7 @@ class MapController(Controller):
 		self.player.coord = Vector2(500, 400)
 		
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
+		self.player.moveSetController.registerMove("move", moveSets.character.move())
 		
 		self.createSubEntity("leftHand", character.hand(), Vector2(-5, 0))
 		rightHand = self.createSubEntity("rightHand", character.hand(), Vector2(5, 0))

@@ -3,6 +3,7 @@ class Move:
 		self.entities = entities
 		self.activeFrameNr = None
 		self.moveLength = 0
+		self.loop = False
 		
 		for key, entity in self.entities.items():
 			lenght = len(entity.frames)
@@ -14,14 +15,23 @@ class Move:
 
 	def start(self):
 		self.activeFrameNr = -1
+		self.loop = False
+
+	def startLoop(self):
+		self.activeFrameNr = -1
+		self.loop = True
+
+	def stop(self):
+		self.activeFrameNr = None
 
 	def moveOn(self):
 		if self.isActive:
 			if(self.activeFrameNr < self.moveLength):
 				self.activeFrameNr += 1
+			elif self.loop:
+				self.activeFrameNr = 0
 			else:
-				self.activeFrameNr = None
-
+				self.stop()
 			
 	def getOffsetForEntity(self, entity):
 		if self.isActive:

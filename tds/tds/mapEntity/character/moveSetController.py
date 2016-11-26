@@ -24,6 +24,12 @@ class MoveSetController:
 	def startMove(self, name):
 		self.moves[name].start()
 
+	def loopMove(self, name):
+		self.moves[name].startLoop()
+
+	def stopMove(self, name):
+		self.moves[name].stop()
+
 	def registerMove(self, name, move):
 		self.moves[name] = move
 

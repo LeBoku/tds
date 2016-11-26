@@ -30,6 +30,9 @@
     <Compile Include="store\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\moveSets\character.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\moveSets\_entity.py">
       <SubType>Code</SubType>
     </Compile>
