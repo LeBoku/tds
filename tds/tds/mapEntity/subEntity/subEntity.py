@@ -7,25 +7,26 @@ from mapEntity.MapEntityController import MapEntityController
 
 from pygameUtil import math_
 
-class WeaponController(MapEntityController):
+class SubEntity(MapEntityController):
 	def __init__(self, map):
 		super().__init__(map)
-		self.character = None
+		self.parent = None
+		self.name = None
 		self.offsetVector = Vector2(10, 0)
 		self.offsetAngle = 0
 
-	def alignToCharacter(self):
-		offset = self.character.moveSetController.getOffsetForEntity("weapon")
+	def alignToParent(self):
+		offset = self.parent.moveSetController.getOffsetForEntity(self.name)
 		movement = offset.vector
 		baseOffset = self.offsetVector + movement
 
-		characterAngle = self.character.angle
+		characterAngle = self.parent.angle
 		offset = baseOffset.rotate(180 - characterAngle)
 
-		self.coord = self.character.coord - offset
+		self.coord = self.parent.coord - offset
 
-		self.angle = self.character.angle + self.offsetAngle
+		self.angle = self.parent.angle + self.offsetAngle
 
 	def display(self):
-		self.alignToCharacter()
+		self.alignToParent()
 		return super().display()

@@ -11,6 +11,13 @@ class MapEntityController(Controller):
 		self.map = map
 		self.coord = Vector2(0, 0)
 		self.angle = 0
+		self.subEntities = {}
+	
+	def addSubEntity(self, name, entity):
+		entity.name = name
+		entity.parent = self
+		self.subEntities[name] = entity
+		self.map.addEntity(entity)
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = MapEntityDisplay(self)

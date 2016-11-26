@@ -8,8 +8,6 @@ from .playerDisplay import PlayerDisplay
 from pygameUtil.EventHandling import EventListener
 from pygameUtil import math_
 
-
-
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)

@@ -6,7 +6,7 @@ from config import mapBounds
 from map.mapDisplay import MapDisplay
 from mapEntity.player.playerController import PlayerController
 
-from mapEntity.weapon.weaponController import WeaponController
+from mapEntity.subEntity.subEntity import SubEntity
 from store.images import weapons 
 from store import moveSets
 import store.moveSets.spear
@@ -35,10 +35,10 @@ class MapController(Controller):
 		self.player = self.addEntity(PlayerController(self))
 		self.player.coord =  Vector2(500, 400)
 		
-		spear = WeaponController(self)
+		spear = SubEntity(self)
 		spear.setBaseImage(weapons.spear())
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
-		self.player.weapon = spear
+		self.player.addSubEntity("weapon", spear)
 
 	def display(self):
 		display = self.displayHandler.display()

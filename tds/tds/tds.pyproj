@@ -76,8 +76,8 @@
     <Compile Include="store\images\weapons.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\weapon\weaponController.py" />
-    <Compile Include="mapEntity\weapon\__init__.py" />
+    <Compile Include="mapEntity\subEntity\subEntity.py" />
+    <Compile Include="mapEntity\subEntity\__init__.py" />
     <Compile Include="mapEntity\MapEntityController.py" />
     <Compile Include="mapEntity\MapEntityDisplay.py" />
     <Compile Include="mapEntity\__init__.py">
@@ -121,7 +121,7 @@
     <Folder Include="base\" />
     <Folder Include="store\" />
     <Folder Include="mapEntity\character\" />
-    <Folder Include="mapEntity\weapon\" />
+    <Folder Include="mapEntity\subEntity\" />
     <Folder Include="mapEntity\" />
     <Folder Include="map\" />
     <Folder Include="mapEntity\player\" />
