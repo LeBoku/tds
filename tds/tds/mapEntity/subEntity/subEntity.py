@@ -29,14 +29,12 @@ class SubEntity(MapEntityController):
 
 	def alignToParent(self):
 		offset = self.parent.moveSetController.getOffsetForEntity(self.name)
-		movement = offset.vector
-		baseOffset = self.offsetVector + movement
+		baseOffset = self.offsetVector + offset.vector
 
 		characterAngle = self.parent.angle
 		offset = baseOffset.rotate(180 - characterAngle)
 
 		self.coord = self.parent.coord - offset
-
 		self.angle = self.parent.angle + self.offsetAngle
 
 	def display(self):

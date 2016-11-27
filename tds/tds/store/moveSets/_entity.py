@@ -18,21 +18,30 @@ class Entity:
 			self.frames.append(self.frames[-1].copy())
 
 	def backToDefault(self, frameCount):
-		self.animateTo(self.defaultOffset.vector, frameCount)
+		self.animateTo(frameCount, self.defaultOffset.vector)
 
-	def animateTo(self, toVector, frameCount=1):
-		toFrame = Offset(Vector2(toVector))
+	def animateTo(self, frameCount, toVector=(0,0), toAngle=0, clockwise=False):
+		toFrame = Offset(Vector2(toVector), toAngle)
 		fromFrame = self.frames[-1]
 		frames = []
+	
+		if clockwise:
+			stepAngle = (fromFrame.angle + 360) - (toFrame.angle + 360)
+		else:
+			stepAngle = (toFrame.angle + 360) - (fromFrame.angle + 360)
 
-		distanceVector = toFrame.vector - fromFrame.vector
-		distanceVector.scale_to_length(distanceVector.length() / frameCount)
+		if stepAngle != 0:
+			stepAngle /= frameCount  
+
+		stepVector = toFrame.vector - fromFrame.vector
+		if stepVector.length() > 0:
+			stepVector.scale_to_length(stepVector.length() / frameCount)
 
 		lastFrame = fromFrame
 
 		for frameNumber in range(frameCount):
-			angle = 0
-			offset = lastFrame.vector + distanceVector
+			angle = (lastFrame.angle + stepAngle) % 360
+			offset = lastFrame.vector + stepVector
 
 			lastFrame = Offset(offset, angle)
 			frames.append(lastFrame)

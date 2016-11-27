@@ -54,7 +54,7 @@
     <Compile Include="store\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\character\moveSetController.py">
+    <Compile Include="base\moveSetController.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mapEntity\character\__init__.py">

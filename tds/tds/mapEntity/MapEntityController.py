@@ -12,6 +12,7 @@ class MapEntityController(Controller):
 		self.coord = Vector2(0, 0)
 		self.angle = 0
 		self.subEntities = {}
+		self.offset = None
 	
 	def addSubEntity(self, name, entity):
 		entity.name = name

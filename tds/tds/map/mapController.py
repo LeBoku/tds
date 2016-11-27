@@ -61,9 +61,13 @@ class MapController(Controller):
 		display = self.displayHandler.display()
 
 		for entity in self.entities:
+			coord = entity.coord
+			if entity.offset is not None:
+				coord += entity.offset.vector
+
 			entityDisplay = entity.display()
 			entityRect = entityDisplay.get_rect()
-			entityRect.center = entity.coord
+			entityRect.center = coord
 
 			display.blit(entityDisplay, entityRect.topleft)
 

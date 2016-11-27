@@ -3,28 +3,36 @@ from ._move import Move
 
 def forwardAttack():
 	rightHand = Entity()
-	rightHand.animateTo((0, 10), 5)
+	rightHand.animateTo(5, (0, 10))
 	rightHand.repeatFrame(5)
-	rightHand.animateTo((0, -10), 5)
+	rightHand.animateTo(5, (0, -10))
 	rightHand.repeatFrame(15)
 	rightHand.backToDefault(5)
 		
 	leftHand = Entity()
-	leftHand.animateTo((0, -10), 10)
-	leftHand.animateTo((0, 5), 5)
+	leftHand.animateTo(10, (0, -10))
+	leftHand.animateTo(5, (0, 5))
 	leftHand.repeatFrame(10)
 	leftHand.backToDefault(5)
 
 	weapon = Entity()
 	weapon.repeatFrame(10)
-	weapon.animateTo((0,-15), 5)
+	weapon.animateTo(5, (0,-15))
 	weapon.repeatFrame(15)
 	weapon.backToDefault(5)
+
+	character = Entity()
+	character.animateTo(5, toAngle=-45)
+	character.repeatFrame(5)
+	character.animateTo(5, toAngle=45, clockwise=True)
+	character.repeatFrame(15)
+	character.backToDefault(5)
 
 	move = Move(
 		rightHand=rightHand,
 		leftHand=leftHand,
-		weapon=weapon
+		weapon=weapon,
+		character=character
 	)
 
 	return move
