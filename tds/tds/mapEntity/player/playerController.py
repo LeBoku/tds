@@ -14,6 +14,9 @@ class PlayerController(CharacterController):
 
 	def display(self):
 		self.updateAngle()
+
+		print(self.map.box.isCollidingWith(self.collisionPolygon))
+
 		return super().display()
 
 	def updateAngle(self):

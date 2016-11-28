@@ -16,22 +16,23 @@ class MapEntityController(Controller):
 		self.collisionPoints = []
 	
 	@property
-	def collsionPolygon(self):
+	def collisionPolygon(self):
 		if len(self.collisionPoints) == 0:
 			return None
 		
 		collisionPolygonPoints = []
 		for point in self.collisionPoints:
-			vector = self.coord + Vector2(point)
+			offsetVector = Vector2(point).rotate(self.angle)
+			vector = self.coord + offsetVector
 			collisionPolygonPoints.append((vector.x,vector.y))
 
 		return Polygon(collisionPolygonPoints)
 
 	def isCollidingWith(self, collisionPolygon):
-		if len(collisionPoints) == 0 or len(collisionPoints) == 0:
+		poly = self.collisionPolygon
+		if poly is None:
 			return False
-
-		return self.collsionPolygon.intersects(collsionPolygon)
+		return poly.intersects(collisionPolygon)
 
 	def addSubEntity(self, name, entity):
 		entity.name = name
