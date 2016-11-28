@@ -28,6 +28,9 @@ class MapEntityController(Controller):
 
 		return Polygon(collisionPolygonPoints)
 
+	def isCollidingWithSomething(self):
+		return self.map.isCollidingWithSomeThing(self.collisionPolygon)
+
 	def isCollidingWith(self, collisionPolygon):
 		poly = self.collisionPolygon
 		if poly is None:

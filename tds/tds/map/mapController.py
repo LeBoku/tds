@@ -16,6 +16,7 @@ class MapController(Controller):
 		super().__init__()
 		self.player = None
 		self.entities = []
+		self.collisionEntities = []
 
 		self.bounds = mapBounds
 
@@ -28,43 +29,54 @@ class MapController(Controller):
 		self.entities.append(entity)
 		return entity
 
+	def addCollisionEntity(self, entity, collisionPoints):
+		entity.collisionPoints = collisionPoints
+		self.collisionEntities.append(entity)
+
+	def isCollidingWithSomeThing(self, collisionPolygon):
+		isCollididing = False
+		for entity in self.collisionEntities:
+			if entity is not None:
+				isCollididing = entity.isCollidingWith(collisionPolygon)
+				if isCollididing:
+					break
+
+		return isCollididing
+
 	def removeEntity(self, entity):
 		self.entities.remove(entity)
 	
 	def setUpEntities(self):
-		self.box = self.addEntity(MapEntityController(self))
-		self.box.setBaseImage(images.props.crate())
-		self.box.coord = Vector2(400, 400)
-		self.box.collisionPoints = [
-			(-10, -10),
+		box = self.addEntity(MapEntityController(self))
+		box.setBaseImage(images.props.crate())
+		box.coord = Vector2(400, 400)
+		self.addCollisionEntity(box, [(-10, -10),
 			(10, -10),
 			(10, 10),
-			(-10, 10)
-		]
+			(-10, 10)])
 
 		self.setUpPlayer()
 
 	def setUpPlayer(self):
 		self.player = self.addEntity(PlayerController(self))
 		self.player.setBaseImage(images.character.player())
-		self.player.collisionPoints = [
-			(-3, -1.5),
+		
+		self.player.collisionPoints = [(-3, -1.5),
 			(3, -1.5),
 			(3, 1.5),
-			(-3, 1.5),
-		]
+			(-3, 1.5),]
 
 		self.player.coord = Vector2(500, 400)
 		
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
 		self.player.moveSetController.registerMove("move", moveSets.character.move())
 		
-		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
-		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
+		self._createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
+		rightHand = self._createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
 
-		self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
+		self._createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
 
-	def createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
+	def _createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
 		if (parent is None):
 			parent = self.player
 
