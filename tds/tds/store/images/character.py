@@ -7,7 +7,6 @@ def player():
 	img = util.createAlphaSurface((5, 3))
 	img.fill((0,0,0))
 	
-
 	return img
 
 def hand():

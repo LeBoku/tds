@@ -27,6 +27,9 @@
     <Compile Include="store\images\character.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\images\props.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\images\__init__.py">
       <SubType>Code</SubType>
     </Compile>
