@@ -99,7 +99,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mapEntity\player\playerController.py" />
-    <Compile Include="mapEntity\player\playerDisplay.py" />
     <Compile Include="mapEntity\player\__init__.py">
       <SubType>Code</SubType>
     </Compile>

@@ -35,11 +35,18 @@ class MapController(Controller):
 		self.box = self.addEntity(MapEntityController(self))
 		self.box.setBaseImage(images.props.crate())
 		self.box.coord = Vector2(400, 400)
+		self.box.collisionPoints = [
+			(-10, -10),
+			(10, -10),
+			(10, 10),
+			(-10, 10)
+		]
 
 		self.setUpPlayer()
 
 	def setUpPlayer(self):
 		self.player = self.addEntity(PlayerController(self))
+		self.player.setBaseImage(images.character.player())
 		self.player.coord = Vector2(500, 400)
 		
 		self.player.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())

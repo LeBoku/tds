@@ -3,7 +3,6 @@ import pygame.mouse
 from pygame.math import Vector2
 
 from mapEntity.character.characterController import CharacterController
-from .playerDisplay import PlayerDisplay
 
 from pygameUtil.EventHandling import EventListener
 from pygameUtil import math_
@@ -12,9 +11,6 @@ class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
 		self.speed = 5
-
-	def setUpDisplayHandler(self):
-		self.displayHandler = PlayerDisplay(self)
 
 	def display(self):
 		self.updateAngle()
