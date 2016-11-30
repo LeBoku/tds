@@ -14,10 +14,10 @@ class PlayerController(CharacterController):
 		self.eventHandler = EventHandler.get()
 
 		self.movementKeys = {
-			pygame.locals.K_w: Vector2(0,-1),
-			pygame.locals.K_d: Vector2(1,0),
-			pygame.locals.K_s: Vector2(0,1),
-			pygame.locals.K_a: Vector2(-1,0)
+			pygame.locals.K_w: ["y", -1],
+			pygame.locals.K_d: ["x", 1],
+			pygame.locals.K_s: ["y", 1],
+			pygame.locals.K_a: ["x", -1]
 		}
 
 	def display(self):
@@ -34,10 +34,11 @@ class PlayerController(CharacterController):
 		if len(pressedKeys) > 0:
 			forwardMovement = Vector2(0,0)
 			self.startMoveAnimation()
-			for key in pressedKeys:
-				forwardMovement += self.movementKeys[key]
-				if not forwardMovement.length() == 0:
-					forwardMovement.normalize()
+			movement = {"x":0,"y":0}
+			for key in reversed(pressedKeys):
+				movement[self.movementKeys[key][0]] = self.movementKeys[key][1]
+
+			forwardMovement = Vector2(movement["x"], movement["y"])
 
 			if forwardMovement.length() > 0:
 				forwardMovement.scale_to_length(self.speed)
