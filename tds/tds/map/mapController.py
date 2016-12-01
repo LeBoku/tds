@@ -1,6 +1,7 @@
 from pygame.math import Vector2
 
 from base.controller import Controller
+from base.types.dicts import DotDict
 from config import mapBounds
 
 from map.mapDisplay import MapDisplay
@@ -33,15 +34,19 @@ class MapController(Controller):
 		entity.collisionPoints = collisionPoints
 		self.collisionEntities.append(entity)
 
-	def isCollidingWithSomeThing(self, collisionPolygon):
-		isCollididing = False
+	def isCollidingWithSomeThing(self, initiator):
+		collisionResult = DotDict(isColliding = False, 
+			collisions=[])
+
 		for entity in self.collisionEntities:
 			if entity is not None:
-				isCollididing = entity.isCollidingWith(collisionPolygon)
-				if isCollididing:
-					break
+				collision = entity.isCollidingWith(initiator)
+				if collision is not None:
+					collisionResult.isColliding = True
+					collisionResult.collisions.append(collision)
+					
 
-		return isCollididing
+		return collisionResult
 
 	def removeEntity(self, entity):
 		self.entities.remove(entity)

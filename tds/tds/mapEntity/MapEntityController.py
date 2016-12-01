@@ -2,6 +2,7 @@ from pygame.math import Vector2
 from shapely.geometry import Polygon
 
 from base.controller import Controller
+from base.types.collision import Collison
 from mapEntity.MapEntityDisplay import MapEntityDisplay
 
 
@@ -29,13 +30,15 @@ class MapEntityController(Controller):
 		return Polygon(collisionPolygonPoints)
 
 	def isCollidingWithSomething(self):
-		return self.map.isCollidingWithSomeThing(self.collisionPolygon)
+		return self.map.isCollidingWithSomeThing(self).isColliding
 
-	def isCollidingWith(self, collisionPolygon):
+	def isCollidingWith(self, initiator):
 		poly = self.collisionPolygon
-		if poly is None:
-			return False
-		return poly.intersects(collisionPolygon)
+		initiatorPolygon = initiator.collisionPolygon
+
+		if (poly is not None) and poly.intersects(initiatorPolygon):
+			return Collison(initiator, self, initiatorPolygon, poly, poly.intersection(initiatorPolygon))
+
 
 	def addSubEntity(self, name, entity):
 		entity.name = name

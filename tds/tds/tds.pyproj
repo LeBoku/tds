@@ -24,6 +24,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="base\types\collision.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="base\types\dicts.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="base\types\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\images\character.py">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="base\" />
+    <Folder Include="base\types\" />
     <Folder Include="store\" />
     <Folder Include="mapEntity\character\" />
     <Folder Include="mapEntity\subEntity\" />
