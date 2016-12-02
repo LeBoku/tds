@@ -42,10 +42,11 @@ class PlayerController(CharacterController):
 
 			if forwardMovement.length() > 0:
 				forwardMovement.scale_to_length(self.speed)
+				oldCord = Vector2(self.coord)
 				self.coord += forwardMovement
-
-			
-			
+				
+				if self.isCollidingWithSomething():
+					self.coord = oldCord
 
 	def startMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
@@ -61,12 +62,12 @@ class PlayerController(CharacterController):
 		self.registerCombat()
 
 	def registerCombat(self):
-		qWindow = 20
+		quequeWindow = 20
 	
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
 			move = self.moveSetController.getMove("attack_forward")
 			if not move.isActive:
 				move.start()
-			elif move.framesLeft < qWindow:
+			elif move.framesLeft < quequeWindow:
 				move.listenForEnd(lambda: move.start())
