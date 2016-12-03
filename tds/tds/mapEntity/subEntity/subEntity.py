@@ -37,6 +37,6 @@ class SubEntity(MapEntityController):
 		self.coord = self.parent.coord - offset
 		self.angle = self.parent.angle + self.offsetAngle
 
-	def display(self):
+	def loopCall(self):
 		self.alignToParent()
-		return super().display()
+		super().loopCall()
