@@ -71,6 +71,7 @@ class MapController(Controller):
 		display = self.displayHandler.display()
 
 		for entity in self.entities:
+			entity.loopCall()
 			coord = entity.coord
 			if entity.offset is not None:
 				coord += entity.offset.vector

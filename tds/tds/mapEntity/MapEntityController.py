@@ -38,6 +38,9 @@ class MapEntityController(Controller):
 		if (poly is not None) and poly.intersects(initiatorPolygon):
 			return Collison(initiator, self, initiatorPolygon, poly, poly.intersection(initiatorPolygon))
 
+	def loopCall(self):
+		pass
+
 	def addSubEntity(self, name, entity):
 		entity.name = name
 		entity.parent = self

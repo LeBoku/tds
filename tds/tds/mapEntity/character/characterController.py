@@ -12,7 +12,7 @@ class CharacterController(MapEntityController):
 	def dealWithMoveOffset(self):
 		self.offset = self.moveSetController.getOffsetForEntity(self.moveSetEntityName)
 
-	def display(self):
+	def loopCall(self):
 		self.moveSetController.moveOn()
 		self.dealWithMoveOffset()
-		return super().display()
+		return super().loopCall()

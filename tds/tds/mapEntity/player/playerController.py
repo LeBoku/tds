@@ -26,11 +26,10 @@ class PlayerController(CharacterController):
 			pygame.locals.K_a: ["x", -1]
 		}
 
-	def display(self):
+	def loopCall(self):
+		super().loopCall()
 		self.updateAngle()
 		self.updateMovement()
-
-		return super().display()
 
 	def updateMovement(self):
 		pressedKeys = self.eventHandler.orderKeysByLoopsDown(self.movementKeys.keys())

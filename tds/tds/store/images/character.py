@@ -10,7 +10,7 @@ def player():
 	return img
 
 def hand():
-	img = util.createAlphaSurface((1, 1))
+	img = util.createAlphaSurface((2, 2))
 	img.fill((0,0,0))
 
 	return img
