@@ -16,8 +16,9 @@ class PlayerController(CharacterController):
 		super().__init__(map)
 		self.speed = 5
 		self.eventHandler = EventHandler.get()
-
-		self.isStoping = False
+		
+		self.isMovementLocked = False
+		self.isStopingMovementAnimation = False
 
 		self.movementKeys = {
 			pygame.locals.K_w: ["y", -1],
@@ -25,6 +26,11 @@ class PlayerController(CharacterController):
 			pygame.locals.K_s: ["y", 1],
 			pygame.locals.K_a: ["x", -1]
 		}
+
+	def lockMovement(self):
+		self.isMovementLocked = True
+	def unLockMovement(self):
+		self.isMovementLocked = False
 
 	def loopCall(self):
 		super().loopCall()
@@ -34,7 +40,7 @@ class PlayerController(CharacterController):
 	def updateMovement(self):
 		pressedKeys = self.eventHandler.orderKeysByLoopsDown(self.movementKeys.keys())
 
-		if len(pressedKeys) > 0:
+		if len(pressedKeys) > 0 and not self.isMovementLocked:
 			forwardMovement = Vector2(0,0)
 			self.startMoveAnimation()
 			movement = {"x":0,"y":0}
@@ -60,7 +66,7 @@ class PlayerController(CharacterController):
 
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
-		if not self.isStoping:
+		if not self.isStopingMovementAnimation:
 			move.listenForMilestone(moveSets.milestones.WalkMilestones.halfWay, lambda: move.stop())
 
 	def updateAngle(self):
@@ -79,6 +85,9 @@ class PlayerController(CharacterController):
 			move = self.moveSetController.getMove("attack_forward")
 			if not move.isActive:
 				move.start()
+				move.listenForMilestone(moveSets.milestones.AttackMilestones.woundUp, lambda: self.lockMovement())
+				move.listenForMilestone(moveSets.milestones.AttackMilestones.attacked, lambda: self.unLockMovement())
+
 			elif move.framesLeft < quequeWindow:
 				move.listenForEnd(lambda: move.start())
 
