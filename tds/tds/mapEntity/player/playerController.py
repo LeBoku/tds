@@ -7,11 +7,17 @@ from mapEntity.character.characterController import CharacterController
 from pygameUtil.EventHandling import EventListener, EventHandler
 from pygameUtil import math_
 
+from mapEntity.subEntity.subEntity import SubEntity
+from store import images
+from store import moveSets
+
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
 		self.speed = 5
 		self.eventHandler = EventHandler.get()
+
+		self.isStoping = False
 
 		self.movementKeys = {
 			pygame.locals.K_w: ["y", -1],
@@ -23,8 +29,6 @@ class PlayerController(CharacterController):
 	def display(self):
 		self.updateAngle()
 		self.updateMovement()
-
-		print(self.isCollidingWithSomething())
 
 		return super().display()
 
@@ -47,11 +51,18 @@ class PlayerController(CharacterController):
 				
 				if self.isCollidingWithSomething():
 					self.coord = oldCord
+		else:
+			self.stopMoveAnimation()
 
 	def startMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
 		if not move.isActive:
 			move.start()
+
+	def stopMoveAnimation(self):
+		move = self.moveSetController.getMove("move")
+		if not self.isStoping:
+			move.listenForMilestone("backToDefault", lambda: move.stop())
 
 	def updateAngle(self):
 		mousePosVector = Vector2(pygame.mouse.get_pos())
@@ -71,3 +82,19 @@ class PlayerController(CharacterController):
 				move.start()
 			elif move.framesLeft < quequeWindow:
 				move.listenForEnd(lambda: move.start())
+
+	def setUpSubEntities(self):
+		self.collisionPoints = [(-3, -1.5),
+			(3, -1.5),
+			(3, 1.5),
+			(-3, 1.5)]
+
+		self.coord = Vector2(500, 400)
+		
+		self.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
+		self.moveSetController.registerMove("move", moveSets.character.move())
+		
+		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
+		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
+
+		self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)

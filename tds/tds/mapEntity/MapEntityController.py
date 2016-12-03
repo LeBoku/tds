@@ -5,7 +5,6 @@ from base.controller import Controller
 from base.types.collision import Collison
 from mapEntity.MapEntityDisplay import MapEntityDisplay
 
-
 class MapEntityController(Controller):
 	def __init__(self, map):
 		super().__init__()
@@ -47,3 +46,17 @@ class MapEntityController(Controller):
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = MapEntityDisplay(self)
+
+	def createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
+		if (parent is None):
+			parent = self
+
+		e = SubEntity(self.map)
+		e.offsetVector = offset
+		e.setBaseImage(image)
+
+		parent.addSubEntity(name, e)
+
+		return e
+
+from mapEntity.subEntity.subEntity import SubEntity # down here because of circular dependency
