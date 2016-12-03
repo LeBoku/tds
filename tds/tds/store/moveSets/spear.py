@@ -1,16 +1,16 @@
 from ._entity import Entity
 from ._move import Move
 
-from .milestones import AttackMilestones
+from .milestones import Attack
 
 def forwardAttack():
 	milestones = {
-		AttackMilestones.windUp: 0,
-		AttackMilestones.woundUp: 10,
-		AttackMilestones.attack: 10,
-		AttackMilestones.attacked: 30,
-		AttackMilestones.coolDown: 30,
-		AttackMilestones.cooledDown: 35
+		Attack.windUp: 0,
+		Attack.woundUp: 10,
+		Attack.attack: 11,
+		Attack.attacked: 30,
+		Attack.coolDown: 31,
+		Attack.cooledDown: 35
 	}
 
 	rightHand = Entity()

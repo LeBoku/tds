@@ -1,9 +1,9 @@
 from enum import Enum
 
-class DefaultMilestones(Enum):
+class Default(Enum):
 	end = 1
 
-class AttackMilestones(Enum):
+class Attack(Enum):
 	windUp = 1
 	woundUp = 2
 	attack = 3
@@ -11,6 +11,6 @@ class AttackMilestones(Enum):
 	coolDown = 5
 	cooledDown = 6
 
-class WalkMilestones(Enum):
+class Walk(Enum):
 	halfWay = 1
 	

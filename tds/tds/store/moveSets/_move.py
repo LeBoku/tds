@@ -1,3 +1,5 @@
+from . import milestones
+
 class Move:
 	def __init__(self, **entities):
 		self.entities = entities
@@ -7,7 +9,7 @@ class Move:
 		self.initActiveFrameData()
 
 		self.mileStones = {
-			"end": self.moveLength + 1 #not called by its frame Number
+			milestones.Default.end: self.moveLength + 1 #not called by its frame Number
 		}
 
 	def initMoveLength(self):
@@ -46,8 +48,8 @@ class Move:
 
 	def stop(self, callEndListeners=False):
 		listeners = []
-		if callEndListeners and "end" in self.activeFrameListeners:
-			listeners = self.activeFrameListeners["end"].copy()
+		if callEndListeners and milestones.Default.end in self.activeFrameListeners:
+			listeners = self.activeFrameListeners[milestones.Default.end].copy()
 
 		self.initActiveFrameData()
 	
@@ -63,7 +65,7 @@ class Move:
 		self.activeFrameListeners[mileStone].append(listener)
 
 	def listenForEnd(self, listener):
-		self.listenForMilestone("end", listener)
+		self.listenForMilestone(milestones.Default.end, listener)
 
 	def moveOn(self):
 		if self.isActive:

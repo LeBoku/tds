@@ -67,7 +67,7 @@ class PlayerController(CharacterController):
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
 		if not self.isStopingMovementAnimation:
-			move.listenForMilestone(moveSets.milestones.WalkMilestones.halfWay, lambda: move.stop())
+			move.listenForMilestone(moveSets.milestones.Walk.halfWay, lambda: move.stop())
 
 	def updateAngle(self):
 		mousePosVector = Vector2(pygame.mouse.get_pos())
@@ -85,8 +85,8 @@ class PlayerController(CharacterController):
 			move = self.moveSetController.getMove("attack_forward")
 			if not move.isActive:
 				move.start()
-				move.listenForMilestone(moveSets.milestones.AttackMilestones.woundUp, lambda: self.lockMovement())
-				move.listenForMilestone(moveSets.milestones.AttackMilestones.attacked, lambda: self.unLockMovement())
+				move.listenForMilestone(moveSets.milestones.Attack.woundUp, lambda: self.lockMovement())
+				move.listenForMilestone(moveSets.milestones.Attack.attacked, lambda: self.unLockMovement())
 
 			elif move.framesLeft < quequeWindow:
 				move.listenForEnd(lambda: move.start())
