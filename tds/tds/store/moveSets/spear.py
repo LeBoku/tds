@@ -1,7 +1,18 @@
 from ._entity import Entity
 from ._move import Move
 
+from .milestones import AttackMilestones
+
 def forwardAttack():
+	milestones = {
+		AttackMilestones.windUp: 0,
+		AttackMilestones.woundUp: 10,
+		AttackMilestones.attack: 10,
+		AttackMilestones.attacked: 30,
+		AttackMilestones.coolDown: 30,
+		AttackMilestones.cooledDown: 35
+	}
+
 	rightHand = Entity()
 	rightHand.animateTo(5, (0, 10))
 	rightHand.repeatFrame(5)
@@ -28,11 +39,11 @@ def forwardAttack():
 	character.repeatFrame(15)
 	character.backToDefault(5)
 
-	move = Move(
-		rightHand=rightHand,
+	move = Move(rightHand=rightHand,
 		leftHand=leftHand,
 		weapon=weapon,
-		character=character
-	)
+		character=character)
+
+	move.mileStones.update(milestones)
 
 	return move

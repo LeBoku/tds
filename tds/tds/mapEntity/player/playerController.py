@@ -61,7 +61,7 @@ class PlayerController(CharacterController):
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
 		if not self.isStoping:
-			move.listenForMilestone("backToDefault", lambda: move.stop())
+			move.listenForMilestone(moveSets.milestones.WalkMilestones.halfWay, lambda: move.stop())
 
 	def updateAngle(self):
 		mousePosVector = Vector2(pygame.mouse.get_pos())

@@ -1,6 +1,8 @@
 from ._entity import Entity
 from ._move import Move
 
+from .milestones import WalkMilestones
+
 def move():
 	armSwing = 5
 	armSwingTime = 5
@@ -22,6 +24,6 @@ def move():
 		leftHand=leftHand
 	)
 
-	move.mileStones["backToDefault"] = armSwingTime * 2
+	move.mileStones[WalkMilestones.halfWay] = armSwingTime * 2
 
 	return move

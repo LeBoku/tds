@@ -45,6 +45,9 @@
     <Compile Include="store\moveSets\character.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\moveSets\milestones.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\moveSets\_entity.py">
       <SubType>Code</SubType>
     </Compile>
