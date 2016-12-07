@@ -33,6 +33,12 @@
     <Compile Include="base\types\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="store\collisionPoints\weapons.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\collisionPoints\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="store\images\character.py">
       <SubType>Code</SubType>
     </Compile>
@@ -144,6 +150,7 @@
     <Folder Include="map\" />
     <Folder Include="mapEntity\player\" />
     <Folder Include="pygameUtil\" />
+    <Folder Include="store\collisionPoints\" />
     <Folder Include="store\images\" />
     <Folder Include="store\moveSets\" />
   </ItemGroup>

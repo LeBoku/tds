@@ -1,4 +1,5 @@
 from pygame.math import Vector2
+from pygame import gfxdraw, Surface
 
 from base.controller import Controller
 from base.types.dicts import DotDict
@@ -22,6 +23,9 @@ class MapController(Controller):
 		self.bounds = mapBounds
 
 		self.setUpEntities()
+
+		self.showCollisions = True
+		self.collisionColor = (255,0,0)
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = MapDisplay(self)
@@ -81,5 +85,17 @@ class MapController(Controller):
 			entityRect.center = coord
 
 			display.blit(entityDisplay, entityRect.topleft)
+
+		if self.showCollisions:
+			entities = self.collisionEntities.copy()
+			entities.append(self.player.weapon)
+
+			for entity in entities:
+				polygonPoints = []
+				polygon =  entity.collisionPolygon
+				for x,y in polygon.exterior.coords:
+					polygonPoints.append((int(x), int(y)))
+
+				gfxdraw.filled_polygon(display, polygonPoints, self.collisionColor)
 
 		return display

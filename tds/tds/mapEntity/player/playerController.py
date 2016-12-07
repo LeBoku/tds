@@ -10,6 +10,7 @@ from pygameUtil import math_
 from mapEntity.subEntity.subEntity import SubEntity
 from store import images
 from store import moveSets
+from store import collisionPoints
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
@@ -17,7 +18,7 @@ class PlayerController(CharacterController):
 		self.speed = 5
 		self.eventHandler = EventHandler.get()
 		
-		self.isMovementLocked = False
+		self.isAttacking = False
 		self.isStopingMovementAnimation = False
 
 		self.movementKeys = {
@@ -28,19 +29,23 @@ class PlayerController(CharacterController):
 		}
 
 	def lockMovement(self):
-		self.isMovementLocked = True
+		self.isAttacking = True
 	def unLockMovement(self):
-		self.isMovementLocked = False
+		self.isAttacking = False
 
 	def loopCall(self):
 		super().loopCall()
 		self.updateAngle()
 		self.updateMovement()
+		if self.isAttacking:
+			isColliding = self.weapon.isCollidingWithSomething()
+			if isColliding:
+				print(isColliding)
 
 	def updateMovement(self):
 		pressedKeys = self.eventHandler.orderKeysByLoopsDown(self.movementKeys.keys())
 
-		if len(pressedKeys) > 0 and not self.isMovementLocked:
+		if len(pressedKeys) > 0 and not self.isAttacking:
 			forwardMovement = Vector2(0,0)
 			self.startMoveAnimation()
 			movement = {"x":0,"y":0}
@@ -105,4 +110,5 @@ class PlayerController(CharacterController):
 		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
 		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
 
-		self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
+		self.weapon = self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
+		self.weapon.collisionPoints = collisionPoints.weapons.spear()

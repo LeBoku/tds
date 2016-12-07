@@ -22,7 +22,7 @@ class MapEntityController(Controller):
 		
 		collisionPolygonPoints = []
 		for point in self.collisionPoints:
-			offsetVector = Vector2(point).rotate(self.angle)
+			offsetVector = Vector2(point).rotate(-self.angle)
 			vector = self.coord + offsetVector
 			collisionPolygonPoints.append((vector.x,vector.y))
 
