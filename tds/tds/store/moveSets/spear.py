@@ -5,30 +5,34 @@ from .milestones import Attack
 
 def leftAttack():
 	milestones = {
-		Attack.windUp: 0,
-		Attack.woundUp: 10,
-		Attack.attack: 11,
-		Attack.attacked: 30,
-		Attack.coolDown: 31,
-		Attack.cooledDown: 35
+		Attack.woundUp: 30,
+		Attack.attacked: 40,
+		Attack.cooledDown: 65
 	}
 
 	rightHand = Entity()
 	rightHand.rotateAround(15, -200, (-7, 0))
 	rightHand.repeatFrame(15)
+	rightHand.rotateAround(10, 300, (-7, 0))
+	rightHand.repeatFrame(15)
+	rightHand.backToDefault(20) ##AllPlanned rotates the wrong way but its cool
+	#rightHand.rotateAround(10, -100, (-7, 0))
 	
-	move = Move(rightHand=rightHand)
+	weapon = Entity()
+	weapon.repeatFrame(30)
+	weapon.animateTo(5, (0, -15))
+	weapon.repeatFrame(20)
+	weapon.backToDefault(20)
+
+	move = Move(rightHand=rightHand, weapon=weapon)
 	move.mileStones.update(milestones)
 
 	return move
 
 def forwardAttack():
 	milestones = {
-		Attack.windUp: 0,
 		Attack.woundUp: 10,
-		Attack.attack: 11,
 		Attack.attacked: 30,
-		Attack.coolDown: 31,
 		Attack.cooledDown: 35
 	}
 
