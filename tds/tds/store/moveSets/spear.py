@@ -3,6 +3,25 @@ from ._move import Move
 
 from .milestones import Attack
 
+def leftAttack():
+	milestones = {
+		Attack.windUp: 0,
+		Attack.woundUp: 10,
+		Attack.attack: 11,
+		Attack.attacked: 30,
+		Attack.coolDown: 31,
+		Attack.cooledDown: 35
+	}
+
+	rightHand = Entity()
+	rightHand.rotateAround(15, -200, (-7, 0))
+	rightHand.repeatFrame(15)
+	
+	move = Move(rightHand=rightHand)
+	move.mileStones.update(milestones)
+
+	return move
+
 def forwardAttack():
 	milestones = {
 		Attack.windUp: 0,

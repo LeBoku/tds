@@ -105,6 +105,7 @@ class PlayerController(CharacterController):
 		self.coord = Vector2(500, 400)
 		
 		self.moveSetController.registerMove("attack_forward", moveSets.spear.forwardAttack())
+		self.moveSetController.registerMove("attack_forward", moveSets.spear.leftAttack())
 		self.moveSetController.registerMove("move", moveSets.character.move())
 		
 		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))

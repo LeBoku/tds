@@ -20,6 +20,26 @@ class Entity:
 	def backToDefault(self, frameCount):
 		self.animateTo(frameCount, self.defaultOffset.vector)
 
+	def rotateAround(self, frameCount, byAngle, around=(0, 0)):
+		fromAngle = self.frames[-1].angle
+		rotationCenter = Vector2(around)
+
+		stepAngle = byAngle/ frameCount
+
+		frames = []
+		lastFrame = self.frames[-1]
+		for i in range(frameCount):
+			differenceVector = rotationCenter - lastFrame.vector
+			newAngle = (lastFrame.angle - stepAngle) % 360
+
+			rotatedVector = differenceVector.rotate(stepAngle)
+			newPos = rotationCenter - rotatedVector
+
+			lastFrame = Offset(newPos, newAngle)
+			frames.append(lastFrame)
+	
+		self.frames.extend(frames)	
+
 	def animateTo(self, frameCount, toVector=(0,0), toAngle=0, clockwise=False):
 		toFrame = Offset(Vector2(toVector), toAngle)
 		fromFrame = self.frames[-1]

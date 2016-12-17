@@ -32,10 +32,10 @@ class SubEntity(MapEntityController):
 		baseOffset = self.offsetVector + offset.vector
 
 		characterAngle = self.parent.angle
-		offset = baseOffset.rotate(180 - characterAngle)
+		offsetVector = baseOffset.rotate(180 - characterAngle)
 
-		self.coord = self.parent.coord - offset
-		self.angle = self.parent.angle + self.offsetAngle
+		self.coord = self.parent.coord - offsetVector
+		self.angle = self.parent.angle + self.offsetAngle + offset.angle
 
 	def loopCall(self):
 		self.alignToParent()
