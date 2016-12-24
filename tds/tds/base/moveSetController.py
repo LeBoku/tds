@@ -21,6 +21,14 @@ class MoveSetController:
 
 		return offset
 
+	def AreAnyMovesActive(self, *moves):
+		for move in moves:
+			if move in self.moves:
+				if self.moves[move].isActive:
+					return True
+		else:
+			return False
+
 	def getMove(self, name):
 		return self.moves[name]
 
