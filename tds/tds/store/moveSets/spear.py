@@ -3,6 +3,31 @@ from ._move import Move
 
 from .milestones import Attack
 
+def rightAttack():
+	milestones = {
+		Attack.woundUp: 25,
+		Attack.attacked: 50,
+		Attack.cooledDown: 60
+	}
+
+	rightHand = Entity();
+	rightHand.animateTo(5, (5, -3), -35)
+	rightHand.repeatFrame(15)
+	rightHand.rotateAround(5, -60)
+	rightHand.repeatFrame(15)
+	rightHand.backToDefault(10)
+	
+	weapon = Entity()
+	weapon.animateTo(5, (0, -10))
+	weapon.repeatFrame(40)
+	weapon.backToDefault(5)
+	weapon.repeatFrame(5)
+	
+
+	move = Move(rightHand=rightHand,weapon=weapon)
+	move.mileStones.update(milestones)
+	return move
+
 def leftAttack():
 	milestones = {
 		Attack.woundUp: 30,
@@ -15,8 +40,7 @@ def leftAttack():
 	rightHand.repeatFrame(15)
 	rightHand.rotateAround(10, 300, (-7, 0))
 	rightHand.repeatFrame(15)
-	rightHand.backToDefault(20) ##AllPlanned rotates the wrong way but its cool
-	#rightHand.rotateAround(10, -100, (-7, 0))
+	rightHand.backToDefault(20) # AllPlanned rotates the wrong way but its cool. correct would be: rightHand.rotateAround(10, -100, (-7, 0))
 	
 	weapon = Entity()
 	weapon.repeatFrame(30)
