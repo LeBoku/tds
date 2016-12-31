@@ -3,7 +3,7 @@ import pygame.transform
 
 from pygame.math import Vector2
 
-from mapEntity.MapEntityController import MapEntityController
+from map.mapEntityController import MapEntityController
 
 from pygameUtil import math_
 

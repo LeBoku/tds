@@ -1,17 +1,18 @@
 from pygame.math import Vector2
 from pygame import gfxdraw, Surface
 
-from base.controller import Controller
-from base.types.dicts import DotDict
+from map.base.controller import Controller
 from config import mapBounds
 
-from map.mapDisplay import MapDisplay
-from mapEntity.MapEntityController import MapEntityController
-from mapEntity.player.playerController import PlayerController
+from map.map.mapDisplay import MapDisplay
+from map.mapEntityController import MapEntityController
+from map.characters.playerController import PlayerController
+from map.subEntity import SubEntity
 
-from mapEntity.subEntity.subEntity import SubEntity
 from store import images
 from store import moveSets
+
+from store.types.dicts import DotDict
 
 class MapController(Controller):
 	def __init__(self):

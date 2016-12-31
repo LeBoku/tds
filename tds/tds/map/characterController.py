@@ -1,6 +1,6 @@
-from mapEntity.MapEntityController import MapEntityController
+from map.mapEntityController import MapEntityController
 
-from base.moveSetController import MoveSetController
+from store.moveSetController import MoveSetController
 
 class CharacterController(MapEntityController):
 	def __init__(self, map):

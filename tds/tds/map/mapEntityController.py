@@ -1,9 +1,9 @@
 from pygame.math import Vector2
 from shapely.geometry import Polygon
 
-from base.controller import Controller
-from base.types.collision import Collison
-from mapEntity.MapEntityDisplay import MapEntityDisplay
+from map.base.controller import Controller
+from store.types import Collison
+from map.mapEntityDisplay import MapEntityDisplay
 
 class MapEntityController(Controller):
 	def __init__(self, map):
@@ -62,4 +62,4 @@ class MapEntityController(Controller):
 
 		return e
 
-from mapEntity.subEntity.subEntity import SubEntity # down here because of circular dependency
+from map.subEntity import SubEntity # down here because of circular dependency

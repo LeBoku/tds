@@ -3,9 +3,9 @@ import sys
 import pygame
 
 import pygameUtil
-import pygameUtil.EventHandling
+from pygameUtil.eventHandling import EventHandler, EventListener
 
-from map.mapController import MapController
+from map.map.mapController import MapController
 
 import config 
 
@@ -13,7 +13,7 @@ isRunning = True
 
 display = pygame.display.set_mode(config.resolution)
 clock = pygame.time.Clock()
-eventHandler = pygameUtil.EventHandling.EventHandler.get()
+eventHandler = EventHandler.get()
 
 map = MapController()
 
@@ -28,7 +28,7 @@ def mainLoop():
 		display.blit(mapDisplay, (0,0))
 		pygame.display.update()
 
-@pygameUtil.EventHandling.EventListener(pygame.locals.QUIT)
+@EventListener(pygame.locals.QUIT)
 def onClose(event):
 	pygame.quit()
 	sys.exit()

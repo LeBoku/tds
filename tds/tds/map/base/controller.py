@@ -1,4 +1,4 @@
-from base.displayHandler import DisplayHandler
+from map.base.displayHandler import DisplayHandler
 
 class Controller:
 	def __init__(self):

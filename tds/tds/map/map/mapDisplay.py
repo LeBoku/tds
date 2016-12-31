@@ -1,6 +1,6 @@
 import pygame
 
-from base.displayHandler import DisplayHandler
+from map.base.displayHandler import DisplayHandler
 from config import resolution
 
 class MapDisplay(DisplayHandler):

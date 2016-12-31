@@ -1,6 +1,6 @@
 import pygame.transform
 
-from base.displayHandler import DisplayHandler
+from map.base.displayHandler import DisplayHandler
 from pygame.math import Vector2
 
 class MapEntityDisplay(DisplayHandler):

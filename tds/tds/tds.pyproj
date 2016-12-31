@@ -24,19 +24,28 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="base\types\collision.py">
+    <Compile Include="store\types\collision.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\types\dicts.py">
+    <Compile Include="store\types\dicts.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\types\__init__.py">
+    <Compile Include="store\types\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\weapons\spear.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\weapons\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\collisionPoints\weapons.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\collisionPoints\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="store\enums.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="store\images\character.py">
@@ -75,52 +84,48 @@
     <Compile Include="store\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\moveSetController.py">
+    <Compile Include="store\moveSetController.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\character\__init__.py">
+    <Compile Include="map\characters\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\controller.py">
+    <Compile Include="map\base\controller.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\displayHandler.py">
+    <Compile Include="map\base\displayHandler.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="base\__init__.py">
+    <Compile Include="map\base\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mainLoop.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\character\characterController.py" />
+    <Compile Include="map\characterController.py" />
     <Compile Include="store\images\weapons.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\subEntity\subEntity.py" />
-    <Compile Include="mapEntity\subEntity\__init__.py" />
-    <Compile Include="mapEntity\MapEntityController.py" />
-    <Compile Include="mapEntity\MapEntityDisplay.py" />
-    <Compile Include="mapEntity\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="map\mapController.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="map\mapDisplay.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="map\subEntity.py" />
+    <Compile Include="map\mapEntityController.py" />
+    <Compile Include="map\mapEntityDisplay.py" />
     <Compile Include="map\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="mapEntity\player\playerController.py" />
-    <Compile Include="mapEntity\player\__init__.py">
+    <Compile Include="map\map\mapController.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pygameUtil\EventHandling.py" />
+    <Compile Include="map\map\mapDisplay.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\map\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="map\characters\playerController.py" />
+    <Compile Include="pygameUtil\eventHandling.py" />
     <Compile Include="pygameUtil\imageHelper.py" />
     <Compile Include="pygameUtil\math_.py" />
     <Compile Include="pygameUtil\textManager.py" />
@@ -141,14 +146,13 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="base\" />
-    <Folder Include="base\types\" />
+    <Folder Include="map\base\" />
+    <Folder Include="store\types\" />
+    <Folder Include="map\weapons\" />
     <Folder Include="store\" />
-    <Folder Include="mapEntity\character\" />
-    <Folder Include="mapEntity\subEntity\" />
-    <Folder Include="mapEntity\" />
+    <Folder Include="map\characters\" />
     <Folder Include="map\" />
-    <Folder Include="mapEntity\player\" />
+    <Folder Include="map\map\" />
     <Folder Include="pygameUtil\" />
     <Folder Include="store\collisionPoints\" />
     <Folder Include="store\images\" />

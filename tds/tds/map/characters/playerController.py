@@ -2,15 +2,16 @@ import pygame.locals
 import pygame.mouse
 from pygame.math import Vector2
 
-from mapEntity.character.characterController import CharacterController
+from map.characterController import CharacterController
 
-from pygameUtil.EventHandling import EventListener, EventHandler
+from pygameUtil.eventHandling import EventListener, EventHandler
 from pygameUtil import math_
 
-from mapEntity.subEntity.subEntity import SubEntity
+from map.subEntity import SubEntity
 from store import images
 from store import moveSets
 from store import collisionPoints
+from store.enums import AttackTypes
 from enum import Enum
 
 class PlayerController(CharacterController):
@@ -36,8 +37,10 @@ class PlayerController(CharacterController):
 
 	def loopCall(self):
 		super().loopCall()
+
 		self.updateAngle()
 		self.updateMovement()
+
 		if self.isAttacking:
 			isColliding = self.weapon.isCollidingWithSomething()
 			if isColliding:
@@ -78,18 +81,18 @@ class PlayerController(CharacterController):
 		angle = (movement.angle_to(Vector2(0,-1)) + 360) % 360
 
 		if 45 < angle < 135:
-			attack = Attacks.right
+			attack = AttackTypes.right
 
 		elif 225 < angle < 315:
-			attack = Attacks.left
+			attack = AttackTypes.left
 	
 		else:
-			attack = Attacks.forward
+			attack = AttackTypes.forward
 
 		return attack
 
 	def getActiveAttackMove(self):
-		for attack in Attacks:
+		for attack in AttackTypes:
 			move = self.moveSetController.getMove(attack)
 			if (move.isActive):
 				return move
@@ -97,7 +100,7 @@ class PlayerController(CharacterController):
 	def startMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
 		if not move.isActive:
-			pass #move.start()
+			move.start()
 
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove("move")
@@ -136,18 +139,13 @@ class PlayerController(CharacterController):
 
 		self.coord = Vector2(500, 400)
 		
-		self.moveSetController.registerMove(Attacks.forward, moveSets.spear.forwardAttack())
-		self.moveSetController.registerMove(Attacks.right, moveSets.spear.rightAttack())
-		self.moveSetController.registerMove(Attacks.left, moveSets.spear.leftAttack())
 		self.moveSetController.registerMove("move", moveSets.character.move())
+		self.moveSetController.registerMove(AttackTypes.forward, moveSets.spear.forwardAttack())
+		self.moveSetController.registerMove(AttackTypes.right, moveSets.spear.rightAttack())
+		self.moveSetController.registerMove(AttackTypes.left, moveSets.spear.leftAttack())
 		
 		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
 		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
 
 		self.weapon = self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
 		self.weapon.collisionPoints = collisionPoints.weapons.spear()
-
-class Attacks(Enum):
-	left = 0
-	forward = 1
-	right= 2
