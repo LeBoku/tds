@@ -8,11 +8,13 @@ from pygameUtil.eventHandling import EventListener, EventHandler
 from pygameUtil import math_
 
 from map.subEntity import SubEntity
+
+from map.weapons import Spear
+
 from store import images
 from store import moveSets
 from store import collisionPoints
 from store.enums import AttackTypes
-from enum import Enum
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
@@ -147,5 +149,5 @@ class PlayerController(CharacterController):
 		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
 		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
 
-		self.weapon = self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
-		self.weapon.collisionPoints = collisionPoints.weapons.spear()
+		self.weapon = Spear("weapon", rightHand) #self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
+		#self.weapon.collisionPoints = collisionPoints.weapons.spear()
