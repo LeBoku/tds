@@ -4,6 +4,8 @@ from pygame import gfxdraw, Surface
 from map.base.controller import Controller
 from config import mapBounds
 
+from pygameUtil import imageHelper
+
 from map.map.mapDisplay import MapDisplay
 from map.mapEntityController import MapEntityController
 from map.characters.playerController import PlayerController
@@ -11,6 +13,8 @@ from map.subEntity import SubEntity
 
 from store import images
 from store import moveSets
+from store.types.dicts import Particle
+
 
 from store.types.dicts import DotDict
 
@@ -20,13 +24,14 @@ class MapController(Controller):
 		self.player = None
 		self.entities = []
 		self.collisionEntities = []
+		self.particles = []
 
 		self.bounds = mapBounds
 
 		self.setUpEntities()
 
-		self.showCollisions = True
-		self.collisionColor = (255,0,0)
+		self.showCollisions = False
+		self.collisionColor = (255, 0, 0)
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = MapDisplay(self)
@@ -34,6 +39,9 @@ class MapController(Controller):
 	def addEntity(self, entity):
 		self.entities.append(entity)
 		return entity
+
+	def addParticle(self, particle):
+		self.particles.append(particle)
 
 	def addCollisionEntity(self, entity, collisionPoints):
 		entity.collisionPoints = collisionPoints
@@ -89,15 +97,14 @@ class MapController(Controller):
 				display.blit(entityDisplay, entityRect.topleft)
 
 		if self.showCollisions:
-			entities = self.collisionEntities.copy()
-			entities.append(self.player.weapon)
+			self.particles.append(Particle(self.player.weapon.collisionPolygon, self.collisionColor))
 
-			for entity in entities:
-				polygonPoints = []
-				polygon =  entity.collisionPolygon
-				for x,y in polygon.exterior.coords:
-					polygonPoints.append((int(x), int(y)))
+			for entity in self.collisionEntities:
+				self.particles.append(Particle(entity.collisionPolygon, self.collisionColor))
 
-				gfxdraw.filled_polygon(display, polygonPoints, self.collisionColor)
+		for particle in self.particles:
+			imageHelper.drawShapelyPolygon(display, particle.polygon, particle.color)
+
+		self.particles = []
 
 		return display

@@ -24,15 +24,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="map\particles\particle.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="map\particles\particleDisplay.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="map\particles\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="store\types\collision.py">
       <SubType>Code</SubType>
     </Compile>
@@ -156,7 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="map\base\" />
-    <Folder Include="map\particles\" />
     <Folder Include="store\types\" />
     <Folder Include="map\weapons\" />
     <Folder Include="store\" />
