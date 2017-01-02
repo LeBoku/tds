@@ -13,4 +13,5 @@ class DisplayHandler:
 		pass
 
 	def display(self):
-		return self.baseImage.copy()
+		if self.baseImage is not None:
+			return self.baseImage.copy()

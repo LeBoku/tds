@@ -82,10 +82,11 @@ class MapController(Controller):
 				coord += entity.offset.vector
 
 			entityDisplay = entity.display()
-			entityRect = entityDisplay.get_rect()
-			entityRect.center = coord
+			if entityDisplay is not None:
+				entityRect = entityDisplay.get_rect()
+				entityRect.center = coord
 
-			display.blit(entityDisplay, entityRect.topleft)
+				display.blit(entityDisplay, entityRect.topleft)
 
 		if self.showCollisions:
 			entities = self.collisionEntities.copy()
