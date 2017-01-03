@@ -25,7 +25,7 @@ class MapController(Controller):
 
 		self.setUpEntities()
 
-		self.showCollisions = False
+		self.showCollisions = True
 		self.collisionColor = (255, 0, 0)
 
 	def setUpDisplayHandler(self):
@@ -91,7 +91,8 @@ class MapController(Controller):
 				display.blit(entityDisplay, entityRect.topleft)
 
 		if self.showCollisions:
-			self.particles.append(Particle(self.player.weapon.collisionPolygon, self.collisionColor))
+			if self.player.isAttacking:
+				self.particles.append(Particle(self.player.weapon.collisionPolygon, self.collisionColor))
 
 			for entity in self.collisionEntities:
 				self.particles.append(Particle(entity.collisionPolygon, self.collisionColor))

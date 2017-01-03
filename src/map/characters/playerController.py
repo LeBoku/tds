@@ -22,8 +22,7 @@ class PlayerController(CharacterController):
 		super().__init__(map)
 		self.speed = 5
 		self.eventHandler = EventHandler.get()
-		
-		self.isAttacking = False
+
 		self.isStopingMovementAnimation = False
 
 		self.movementKeys = {

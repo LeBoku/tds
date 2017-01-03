@@ -77,7 +77,7 @@ class EventHandler:
 			self.postCustomEvent(subType="KEY_IS_DOWN", key=key, downForLoops=self.pressedKeys[key])
 
 	@staticmethod
-	def postCustomEvent(self, **attrs):
+	def postCustomEvent(**attrs):
 		ev = pygame.event.Event(pygame.locals.USEREVENT, attrs) 
 		pygame.event.post(ev)
 		

@@ -5,6 +5,7 @@ from map.base.controller import Controller
 from store.types import Collison
 from map.mapEntityDisplay import MapEntityDisplay
 
+
 class MapEntityController(Controller):
 	def __init__(self, map):
 		super().__init__()
@@ -35,7 +36,7 @@ class MapEntityController(Controller):
 		poly = self.collisionPolygon
 		initiatorPolygon = initiator.collisionPolygon
 
-		if (poly is not None) and poly.intersects(initiatorPolygon):
+		if (poly is not None and initiatorPolygon is not None) and poly.intersects(initiatorPolygon):
 			return Collison(initiator, self, initiatorPolygon, poly, poly.intersection(initiatorPolygon))
 
 	def loopCall(self):
