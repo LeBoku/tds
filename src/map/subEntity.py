@@ -1,11 +1,7 @@
-import math
-import pygame.transform
-
 from pygame.math import Vector2
 
 from map.mapEntityController import MapEntityController
 
-from pygameUtil import math_
 
 class SubEntity(MapEntityController):
 	def __init__(self, map):

@@ -1,5 +1,6 @@
 from pygame import gfxdraw, Rect, image, Surface
 
+
 def loadImage(path, isTransparent=True):
 	img = image.load(path)
 	if isTransparent:
@@ -7,6 +8,7 @@ def loadImage(path, isTransparent=True):
 	else:
 		img = img.convert()
 	return img
+
 
 def drawShapelyPolygon(onto, polygon, color):
 	polygonPoints = []

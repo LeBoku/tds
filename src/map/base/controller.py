@@ -1,7 +1,9 @@
 from map.base.displayHandler import DisplayHandler
 
+
 class Controller:
 	def __init__(self):
+		self.displayHandler = None
 		self.registerEvents()
 		self.setUpDisplayHandler()
 		return super().__init__()

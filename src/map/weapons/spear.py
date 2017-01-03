@@ -3,6 +3,7 @@ from map.subEntity import SubEntity
 from store.collisionPoints.weapons import spear as spearCollision
 from store.images.weapons import spear as spearImage
 
+
 class Spear(SubEntity):
 	def __init__(self, name, parent):
 		self.name = name

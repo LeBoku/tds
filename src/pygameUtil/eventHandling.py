@@ -1,7 +1,6 @@
-import traceback
-
 import pygame.event
 import pygame.locals
+
 
 class EventListener:
 	def __init__(self, type, **conditions):
@@ -48,6 +47,7 @@ class EventListener:
 
 		return isValid
 
+
 class EventHandler:
 	_instance = None
 
@@ -76,6 +76,7 @@ class EventHandler:
 			self.pressedKeys[key] += 1
 			self.postCustomEvent(subType="KEY_IS_DOWN", key=key, downForLoops=self.pressedKeys[key])
 
+	@staticmethod
 	def postCustomEvent(self, **attrs):
 		ev = pygame.event.Event(pygame.locals.USEREVENT, attrs) 
 		pygame.event.post(ev)
@@ -146,4 +147,3 @@ class EventHandler:
 
 					if flag is not None and flag == False:
 						break
-

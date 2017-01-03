@@ -1,7 +1,9 @@
 import math
 
+
 def invertAngle(angle):
 	return (angle + 180) % 360
+
 
 def calcAngleBetweenPositions(pos1, pos2):
 	bPos = (pos1[0] - pos2[0], pos1[1] - pos2[1])
@@ -23,6 +25,7 @@ def calcAngleBetweenPositions(pos1, pos2):
 		angle = 360 - angle
 
 	return (angle + 180) % 360
+
 
 def calcNewPosByAngleAndDistance(pos, angle, distance):
 	angle %= 360
@@ -56,12 +59,14 @@ def calcNewPosByAngleAndDistance(pos, angle, distance):
 
 	return int(x), int(y)
 
+
 def calcDistanceBetweenPoses(pos1, pos2):
 	a = abs(pos1[0] - pos2[0])
 	b = abs(pos1[1] - pos2[1])
 
 	c = math.sqrt(a * a + b * b)
 	return c
+
 
 def getDifferenceBetweenAngles(angle, checkAngle):
 	angle %= 360

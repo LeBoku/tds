@@ -1,6 +1,6 @@
 import sys
 
-import pygame
+import pygame, pygame.locals
 
 from pygameUtil.eventHandling import EventHandler, EventListener
 from map.map.mapController import MapController

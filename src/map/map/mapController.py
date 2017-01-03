@@ -1,5 +1,4 @@
 from pygame.math import Vector2
-from pygame import gfxdraw, Surface
 
 from map.base.controller import Controller
 from config import mapBounds
@@ -9,14 +8,10 @@ from pygameUtil import imageHelper
 from map.map.mapDisplay import MapDisplay
 from map.mapEntityController import MapEntityController
 from map.characters.playerController import PlayerController
-from map.subEntity import SubEntity
 
 from store import images
-from store import moveSets
-from store.types.dicts import Particle
+from store.types.dicts import Particle, DotDict
 
-
-from store.types.dicts import DotDict
 
 class MapController(Controller):
 	def __init__(self):
@@ -57,7 +52,6 @@ class MapController(Controller):
 				if collision is not None:
 					collisionResult.isColliding = True
 					collisionResult.collisions.append(collision)
-					
 
 		return collisionResult
 

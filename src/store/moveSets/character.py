@@ -3,7 +3,8 @@ from ._move import Move
 
 from .milestones import Walk
 
-def move():
+
+def walk():
 	armSwing = 5
 	armSwingTime = 5
 

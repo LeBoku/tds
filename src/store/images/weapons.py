@@ -4,6 +4,7 @@ import pygame.gfxdraw
 
 from store.images import util
 
+
 def spear():
 	color = (0,0,0)
 	spearHeight = 36

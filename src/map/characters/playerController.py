@@ -16,6 +16,7 @@ from store import moveSets
 from store import collisionPoints
 from store.enums import AttackTypes
 
+
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
@@ -34,7 +35,8 @@ class PlayerController(CharacterController):
 
 	def lockMovement(self):
 		self.isAttacking = True
-	def unLockMovement(self):
+
+	def unlockMovement(self):
 		self.isAttacking = False
 
 	def loopCall(self):
@@ -118,7 +120,7 @@ class PlayerController(CharacterController):
 		self.registerCombat()
 
 	def registerCombat(self):
-		quequeWindow = 20
+		qWindow = 20
 	
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
@@ -127,9 +129,9 @@ class PlayerController(CharacterController):
 				move = self.moveSetController.getMove(self.getAttack())
 				move.start()
 				move.listenForMilestone(moveSets.milestones.Attack.woundUp, lambda: self.lockMovement())
-				move.listenForMilestone(moveSets.milestones.Attack.attacked, lambda: self.unLockMovement())
+				move.listenForMilestone(moveSets.milestones.Attack.attacked, lambda: self.unlockMovement())
 
-			elif activeMove.framesLeft < quequeWindow:
+			elif activeMove.framesLeft < qWindow:
 				move = self.moveSetController.getMove(self.getAttack())
 				move.listenForEnd(lambda: move.start())
 
@@ -141,7 +143,7 @@ class PlayerController(CharacterController):
 
 		self.coord = Vector2(500, 400)
 		
-		self.moveSetController.registerMove("move", moveSets.character.move())
+		self.moveSetController.registerMove("move", moveSets.character.walk())
 		self.moveSetController.registerMove(AttackTypes.forward, moveSets.spear.forwardAttack())
 		self.moveSetController.registerMove(AttackTypes.right, moveSets.spear.rightAttack())
 		self.moveSetController.registerMove(AttackTypes.left, moveSets.spear.leftAttack())
@@ -149,5 +151,4 @@ class PlayerController(CharacterController):
 		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
 		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
 
-		self.weapon = Spear("weapon", rightHand) #self.createSubEntity("weapon", images.weapons.spear(), parent=rightHand)
-		#self.weapon.collisionPoints = collisionPoints.weapons.spear()
+		self.weapon = Spear("weapon", rightHand)

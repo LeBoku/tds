@@ -51,7 +51,7 @@ class MapEntityController(Controller):
 		self.displayHandler = MapEntityDisplay(self)
 
 	def createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
-		if (parent is None):
+		if parent is None:
 			parent = self
 
 		e = SubEntity(self.map)

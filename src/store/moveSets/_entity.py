@@ -1,6 +1,7 @@
 from pygame.math import Vector2
 
-from ._offset import Offset
+from store.types import Offset
+
 
 class Entity:
 	def __init__(self, startVector=Vector2(0,0)):
@@ -67,4 +68,3 @@ class Entity:
 			frames.append(lastFrame)
 		
 		self.frames.extend(frames)
-			

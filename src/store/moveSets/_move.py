@@ -1,15 +1,21 @@
 from . import milestones
 
+
 class Move:
 	def __init__(self, **entities):
 		self.entities = entities
-		
+
+		self.loop = False
+
 		self.moveLength = 0
-		self.initMoveLength()		
+		self.initMoveLength()
+
+		self.activeFrameNr = None
+		self.activeFrameListeners = {}
 		self.initActiveFrameData()
 
 		self.mileStones = {
-			milestones.Default.end: self.moveLength + 1 #not called by its frame Number
+			milestones.Default.end: self.moveLength + 1 # #not called by its frame Number
 		}
 
 	def initMoveLength(self):
@@ -29,7 +35,7 @@ class Move:
 
 	@property
 	def framesLeft(self):
-		if(self.isActive):
+		if self.isActive:
 			return self.moveLength - self.activeFrameNr
 
 	def start(self):
@@ -69,7 +75,7 @@ class Move:
 
 	def moveOn(self):
 		if self.isActive:
-			if(self.activeFrameNr < self.moveLength):
+			if self.activeFrameNr < self.moveLength:
 				self.activeFrameNr += 1
 			else:
 				if self.loop:
@@ -81,7 +87,7 @@ class Move:
 			
 	def getOffsetForEntity(self, entity):
 		if self.isActive:
-			if(entity in self.entities):
+			if entity in self.entities:
 				return self.entities[entity].getOffsetForFrame(self.activeFrameNr)
 
 	def _dealWithListeners(self):

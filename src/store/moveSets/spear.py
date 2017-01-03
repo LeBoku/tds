@@ -3,6 +3,7 @@ from ._move import Move
 
 from .milestones import Attack
 
+
 def rightAttack():
 	milestones = {
 		Attack.woundUp: 25,
@@ -22,11 +23,11 @@ def rightAttack():
 	weapon.repeatFrame(40)
 	weapon.backToDefault(5)
 	weapon.repeatFrame(5)
-	
 
 	move = Move(rightHand=rightHand,weapon=weapon)
 	move.mileStones.update(milestones)
 	return move
+
 
 def leftAttack():
 	milestones = {
@@ -52,6 +53,7 @@ def leftAttack():
 	move.mileStones.update(milestones)
 
 	return move
+
 
 def forwardAttack():
 	milestones = {
