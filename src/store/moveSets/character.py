@@ -5,7 +5,7 @@ from .milestones import Walk
 
 
 def walk():
-	armSwing = 5
+	armSwing = 10
 	armSwingTime = 5
 
 	rightHand = Entity()

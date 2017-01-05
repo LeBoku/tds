@@ -25,7 +25,7 @@ class MapController(Controller):
 
 		self.setUpEntities()
 
-		self.showCollisions = False
+		self.showCollisions = True
 		self.collisionColor = (255, 0, 0)
 
 	def setUpDisplayHandler(self):
@@ -62,10 +62,10 @@ class MapController(Controller):
 		box = self.addEntity(MapEntityController(self))
 		box.setBaseImage(images.props.crate())
 		box.coord = Vector2(400, 400)
-		self.addCollisionEntity(box, [(-10, -10),
-			(10, -10),
-			(10, 10),
-			(-10, 10)])
+		self.addCollisionEntity(box, [(-20, -20),
+			(20, -20),
+			(20, 20),
+			(-20, 20)])
 
 		self.setUpPlayer()
 

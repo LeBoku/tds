@@ -22,6 +22,7 @@ class PlayerController(CharacterController):
 		super().__init__(map)
 		self.speed = 5
 		self.eventHandler = EventHandler.get()
+		self.weapon = None
 
 		self.isStopingMovementAnimation = False
 
@@ -97,7 +98,7 @@ class PlayerController(CharacterController):
 	def getActiveAttackMove(self):
 		for attack in AttackTypes:
 			move = self.moveSetController.getMove(attack)
-			if (move.isActive):
+			if move.isActive:
 				return move
 
 	def startMoveAnimation(self):
@@ -147,7 +148,7 @@ class PlayerController(CharacterController):
 		self.moveSetController.registerMove(AttackTypes.right, moveSets.spear.rightAttack())
 		self.moveSetController.registerMove(AttackTypes.left, moveSets.spear.leftAttack())
 		
-		self.createSubEntity("leftHand", images.character.hand(), Vector2(-5, 0))
-		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(5, 0))
+		self.createSubEntity("leftHand", images.character.hand(), Vector2(-10, 0))
+		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(10, 0))
 
 		self.weapon = Spear("weapon", rightHand)
