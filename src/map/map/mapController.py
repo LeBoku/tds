@@ -25,7 +25,7 @@ class MapController(Controller):
 
 		self.setUpEntities()
 
-		self.showCollisions = True
+		self.showCollisions = False
 		self.collisionColor = (255, 0, 0)
 
 	def setUpDisplayHandler(self):
