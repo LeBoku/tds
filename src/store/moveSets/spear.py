@@ -89,10 +89,12 @@ def forwardAttack():
 	character.repeatFrame(15)
 	character.animateTo(5, toAngle=0)
 
-	move = Move(rightHand=rightHand,
+	move = Move(
+		rightHand=rightHand,
 		leftHand=leftHand,
 		weapon=weapon,
-		character=character)
+		character=character
+	)
 
 	move.mileStones.update(milestones)
 

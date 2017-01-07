@@ -47,7 +47,14 @@ class Entity:
 		frames = []
 	
 		if clockwise:
-			stepAngle = (fromFrame.angle + 360) - (toFrame.angle + 360)
+			fromAngle = fromFrame.angle + 360
+			toAngle = toFrame.angle + 360
+
+			if fromAngle > toAngle:
+				stepAngle = ~int(fromAngle - (toAngle + 360))
+			else:
+				stepAngle = fromAngle - toAngle
+
 		else:
 			stepAngle = (toFrame.angle + 360) - (fromFrame.angle + 360)
 

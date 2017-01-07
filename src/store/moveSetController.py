@@ -1,9 +1,11 @@
+from collections import  OrderedDict
+
 from store.types import Offset
 
 
 class MoveSetController:
 	def __init__(self, **kwargs):
-		self.moves = {}
+		self.moves = OrderedDict()
 
 	def moveOn(self):
 		for key, move in self.moves.items():

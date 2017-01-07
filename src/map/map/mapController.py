@@ -12,6 +12,8 @@ from map.characters.playerController import PlayerController
 from store import images
 from store.types.dicts import Particle, DotDict
 
+import config
+
 
 class MapController(Controller):
 	def __init__(self):
@@ -25,7 +27,6 @@ class MapController(Controller):
 
 		self.setUpEntities()
 
-		self.showCollisions = True
 		self.collisionColor = (255, 0, 0)
 
 	def setUpDisplayHandler(self):
@@ -90,7 +91,7 @@ class MapController(Controller):
 
 				display.blit(entityDisplay, entityRect.topleft)
 
-		if self.showCollisions:
+		if config.debug:
 			if self.player.isAttacking:
 				self.particles.append(Particle(self.player.weapon.collisionPolygon, self.collisionColor))
 

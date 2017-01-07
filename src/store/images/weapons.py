@@ -12,6 +12,6 @@ def spear():
 
 	spearImage = util.createAlphaSurface((5, spearHeight))
 	pygame.draw.rect(spearImage, color, pygame.Rect((2, 0), (spearWidth, spearHeight)))
-	pygame.draw.rect(spearImage, color, pygame.Rect((0, 10), (5, 2)))
+	pygame.draw.rect(spearImage, color, pygame.Rect((1, 10), (4, 2)))
 
 	return spearImage
