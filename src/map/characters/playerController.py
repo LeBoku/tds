@@ -14,7 +14,7 @@ from map.weapons import Spear
 from store import images
 from store import moveSets
 from store import collisionPoints
-from store.enums import AttackTypes
+from store.enums import MoveTypes, CharacterParts, attackTypes
 
 
 class PlayerController(CharacterController):
@@ -85,29 +85,29 @@ class PlayerController(CharacterController):
 		angle = (movement.angle_to(Vector2(0,-1)) + 360) % 360
 
 		if 45 < angle < 135:
-			attack = AttackTypes.right
+			attack = MoveTypes.attackRight
 
 		elif 225 < angle < 315:
-			attack = AttackTypes.left
+			attack = MoveTypes.attackLeft
 	
 		else:
-			attack = AttackTypes.forward
+			attack = MoveTypes.attackForward
 
 		return attack
 
 	def getActiveAttackMove(self):
-		for attack in AttackTypes:
+		for attack in attackTypes:
 			move = self.moveSetController.getMove(attack)
 			if move.isActive:
 				return move
 
 	def startMoveAnimation(self):
-		move = self.moveSetController.getMove("move")
+		move = self.moveSetController.getMove(MoveTypes.walk)
 		if not move.isActive:
 			move.start()
 
 	def stopMoveAnimation(self):
-		move = self.moveSetController.getMove("move")
+		move = self.moveSetController.getMove(MoveTypes.walk)
 		if not self.isStopingMovementAnimation:
 			move.listenForMilestone(moveSets.milestones.Walk.halfWay, lambda: move.stop())
 
@@ -136,19 +136,16 @@ class PlayerController(CharacterController):
 				move.listenForEnd(lambda: move.start())
 
 	def setUpSubEntities(self):
+		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
+
 		self.collisionPoints = [(-3, -1.5),
 			(3, -1.5),
 			(3, 1.5),
 			(-3, 1.5)]
 
 		self.coord = Vector2(500, 400)
-		
-		self.moveSetController.registerMove("move", moveSets.character.walk())
-		self.moveSetController.registerMove(AttackTypes.forward, moveSets.spear.forwardAttack())
-		self.moveSetController.registerMove(AttackTypes.right, moveSets.spear.rightAttack())
-		self.moveSetController.registerMove(AttackTypes.left, moveSets.spear.leftAttack())
-		
-		self.createSubEntity("leftHand", images.character.hand(), Vector2(-10, 0))
-		rightHand = self.createSubEntity("rightHand", images.character.hand(), Vector2(10, 0))
+		self.createSubEntity(CharacterParts.leftHand, images.character.hand(), Vector2(-10, 0))
+		rightHand = self.createSubEntity(CharacterParts.rightHand, images.character.hand(), Vector2(10, 0))
 
-		self.weapon = Spear("weapon", rightHand)
+		self.weapon = Spear(CharacterParts.weapon, rightHand)
+		self.weapon.setUpWeaponMoveSet()

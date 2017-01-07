@@ -1,7 +1,10 @@
+from pygame.math import Vector2
+
 from ._entity import Entity
 from ._move import Move
 
-from .milestones import Attack
+from .milestones import Attack, Walk
+from store.enums import CharacterParts
 
 
 def rightAttack():
@@ -24,7 +27,12 @@ def rightAttack():
 	weapon.backToDefault(5)
 	weapon.repeatFrame(5)
 
-	move = Move(rightHand=rightHand,weapon=weapon)
+	entities = dict()
+	entities[CharacterParts.rightHand] = rightHand
+	entities[CharacterParts.weapon] = weapon
+
+	move = Move(entities)
+
 	move.mileStones.update(milestones)
 	return move
 
@@ -50,7 +58,12 @@ def leftAttack():
 	weapon.repeatFrame(20)
 	weapon.backToDefault(20)
 
-	move = Move(rightHand=rightHand, weapon=weapon)
+	entities = dict()
+	entities[CharacterParts.rightHand] = rightHand
+	entities[CharacterParts.weapon] = weapon
+
+	move = Move(entities)
+
 	move.mileStones.update(milestones)
 
 	return move
@@ -89,12 +102,13 @@ def forwardAttack():
 	character.repeatFrame(15)
 	character.animateTo(5, toAngle=0)
 
-	move = Move(
-		rightHand=rightHand,
-		leftHand=leftHand,
-		weapon=weapon,
-		character=character
-	)
+	entities = dict()
+	entities[CharacterParts.rightHand] = rightHand
+	entities[CharacterParts.leftHand] = leftHand
+	entities[CharacterParts.weapon] = weapon
+	entities[CharacterParts.body] = character
+
+	move = Move(entities)
 
 	move.mileStones.update(milestones)
 

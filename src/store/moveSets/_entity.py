@@ -4,8 +4,8 @@ from store.types import Offset
 
 
 class Entity:
-	def __init__(self, startVector=Vector2(0,0)):
-		self.frames = [Offset(Vector2(startVector))]
+	def __init__(self, startVector=Vector2(0,0), startAngle=0):
+		self.frames = [Offset(Vector2(startVector), startAngle)]
 		self.defaultOffset = Offset()
 
 	def getOffsetForFrame(self, frameNr):

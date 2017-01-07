@@ -1,6 +1,7 @@
 from map.mapEntityController import MapEntityController
 
 from store.moveSetController import MoveSetController
+from store.enums import CharacterParts
 
 
 class CharacterController(MapEntityController):
@@ -10,7 +11,7 @@ class CharacterController(MapEntityController):
 
 		self.isAttacking = False
 
-		self.moveSetEntityName = "character"
+		self.moveSetEntityName = CharacterParts.body
 		self.moveSetController = MoveSetController()
 
 	def dealWithMoveOffset(self):

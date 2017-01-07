@@ -1,39 +1,21 @@
-from map.subEntity import SubEntity
-from map.characterController import CharacterController
+from .weapon import Weapon
 
-from store.collisionPoints.weapons import spear as spearCollision
+from store.moveSetController import MoveSetController
+
+from store.enums import MoveTypes
 from store.images.weapons import spear as spearImage
+from store.moveSets import spear as spearMoves
+from store.collisionPoints.weapons import spear as spearCollision
 
-from store.types import Particle
 
-
-class Spear(SubEntity):
-	def __init__(self, name, parent: CharacterController):
-		self.name = name
-		self.parent = parent
-		self.character = parent.parent
-		super().__init__(parent.map)
-
-		self.lastAttackParticle = None
-
-		self.collisionPoints = spearCollision()
+class Spear(Weapon):
+	def setUpBaseImage(self):
 		self.setBaseImage(spearImage())
-		parent.addSubEntity(name, self)
 
-	def display(self):
-		if self.character.isAttacking:
-			if self.lastAttackParticle is not None:
-				particle = self.lastAttackParticle.union(self.collisionPolygon).convex_hull
-				self.lastAttackParticle = self.collisionPolygon
+	def setUpCollisionPoints(self):
+		self.collisionPoints = spearCollision()
 
-			else:
-				particle = self.collisionPolygon
-				self.lastAttackParticle = self.collisionPolygon
-
-			self.map.addParticle(Particle(particle, (200, 200, 200)))
-
-		else:
-			self.lastAttackParticle = None
-
-		return super().display()
-
+	def setUpWeaponMoveSet(self):
+		self.moveSetController.registerMove(MoveTypes.attackForward, spearMoves.forwardAttack())
+		self.moveSetController.registerMove(MoveTypes.attackLeft, spearMoves.leftAttack())
+		self.moveSetController.registerMove(MoveTypes.attackRight, spearMoves.rightAttack())

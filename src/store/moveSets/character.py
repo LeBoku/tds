@@ -3,6 +3,8 @@ from ._move import Move
 
 from .milestones import Walk
 
+from store.enums import CharacterParts
+
 
 def walk():
 	armSwing = 10
@@ -20,10 +22,11 @@ def walk():
 	leftHand.animateTo(armSwingTime, (0, armSwing))
 	leftHand.animateTo(armSwingTime, (0, 0))
 
-	move = Move(
-		rightHand=rightHand,
-		leftHand=leftHand
-	)
+	entities = dict()
+	entities[CharacterParts.rightHand] = rightHand
+	entities[CharacterParts.leftHand] = leftHand
+
+	move = Move(entities)
 
 	move.mileStones[Walk.halfWay] = armSwingTime * 2
 

@@ -1,10 +1,25 @@
 from enum import Enum
 
 
-class AttackTypes(Enum):
-	left = 0
-	forward = 1
-	right= 2
+class MoveTypes(Enum):
+	walk = 0
+	attackForward = 1
+	attackLeft = 2
+	attackRight = 3
+
+
+attackTypes = [
+	MoveTypes.attackForward,
+	MoveTypes.attackRight,
+	MoveTypes.attackLeft
+]
+
+
+class CharacterParts(Enum):
+	body = 0
+	leftHand = 1
+	rightHand = 2
+	weapon = 3
 
 
 class DefaultMilestones(Enum):

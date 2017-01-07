@@ -6,10 +6,14 @@ class Controller:
 		self.displayHandler = None
 		self.registerEvents()
 		self.setUpDisplayHandler()
+		self.setUpBaseImage()
 		return super().__init__()
 
 	def setUpDisplayHandler(self):
 		self.displayHandler = DisplayHandler(self)
+
+	def setUpBaseImage(self):
+		pass
 
 	def setBaseImage(self, baseImage):
 		self.displayHandler.baseImage = baseImage

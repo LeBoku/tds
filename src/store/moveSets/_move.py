@@ -2,7 +2,7 @@ from . import milestones
 
 
 class Move:
-	def __init__(self, **entities):
+	def __init__(self, entities):
 		self.entities = entities
 
 		self.loop = False

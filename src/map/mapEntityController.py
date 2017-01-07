@@ -15,19 +15,18 @@ class MapEntityController(Controller):
 		self.subEntities = {}
 		self.offset = None
 		self.collisionPoints = []
+		self._collisionPolygon = None
 	
 	@property
 	def collisionPolygon(self):
-		if len(self.collisionPoints) == 0:
-			return None
-		
-		collisionPolygonPoints = []
-		for point in self.collisionPoints:
-			offsetVector = Vector2(point).rotate(-self.angle)
-			vector = self.coord + offsetVector
-			collisionPolygonPoints.append((vector.x,vector.y))
+		if self._collisionPolygon is not None:
+			return self._collisionPolygon
+		else:
+			return self.calculateCollisionPolygon()
 
-		return Polygon(collisionPolygonPoints)
+	@collisionPolygon.setter
+	def collisionPolygon(self, poly):
+		self._collisionPolygon = poly
 
 	def isCollidingWithSomething(self):
 		return self.map.isCollidingWithSomeThing(self).isColliding
@@ -38,6 +37,18 @@ class MapEntityController(Controller):
 
 		if (poly is not None and initiatorPolygon is not None) and poly.intersects(initiatorPolygon):
 			return Collison(initiator, self, initiatorPolygon, poly, poly.intersection(initiatorPolygon))
+
+	def calculateCollisionPolygon(self):
+		if len(self.collisionPoints) == 0:
+			return None
+
+		collisionPolygonPoints = []
+		for point in self.collisionPoints:
+			offsetVector = Vector2(point).rotate(-self.angle)
+			vector = self.coord + offsetVector
+			collisionPolygonPoints.append((vector.x, vector.y))
+
+		return Polygon(collisionPolygonPoints)
 
 	def loopCall(self):
 		pass
