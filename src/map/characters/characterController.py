@@ -1,6 +1,7 @@
 from map.mapEntityController import MapEntityController
 
 from store.moveSetController import MoveSetController
+from store.images import character
 from store.enums import CharacterParts
 
 
@@ -11,11 +12,16 @@ class CharacterController(MapEntityController):
 
 		self.isAttacking = False
 
-		self.moveSetEntityName = CharacterParts.body
+		self.moveSetEntityName = CharacterParts.character
 		self.moveSetController = MoveSetController()
 
 	def dealWithMoveOffset(self):
-		self.offset = self.moveSetController.getOffsetForEntity(self.moveSetEntityName)
+		offset = self.moveSetController.getOffsetForEntity(self.moveSetEntityName)
+
+		if offset.vector.length() > 0:
+			angle = self.angle + offset.angle
+			vector = offset.vector.rotate(-angle)
+			self.coord += vector
 
 	def loopCall(self):
 		self.moveSetController.moveOn()

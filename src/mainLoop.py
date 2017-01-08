@@ -29,7 +29,7 @@ def mainLoop():
 		display.blit(mapDisplay, (0, 0))
 
 		if config.showFPS:
-			display.blit(renderText(math.ceil(clock.get_fps()), (255, 0, 0), 25), (5, 5))
+			display.blit(renderText(round(clock.get_fps(), 2), (255, 0, 0), 25), (5, 5))
 
 		pygame.display.update()
 

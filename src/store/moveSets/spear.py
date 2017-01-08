@@ -93,18 +93,18 @@ def forwardAttack():
 	weapon.repeatFrame(15)
 	weapon.backToDefault(5)
 
-	character = Entity()
-	character.animateTo(5, toAngle=-45)
-	character.repeatFrame(5)
-	character.animateTo(5, toAngle=45, clockwise=True)
-	character.repeatFrame(15)
-	character.animateTo(5, toAngle=0)
+	torso = Entity()
+	torso.animateTo(5, toAngle=-45)
+	torso.repeatFrame(5)
+	torso.animateTo(5, toAngle=45, clockwise=True)
+	torso.repeatFrame(15)
+	torso.animateTo(5, toAngle=0)
 
 	entities = dict()
+	entities[CharacterParts.torso] = torso
 	entities[CharacterParts.rightHand] = rightHand
 	entities[CharacterParts.leftHand] = leftHand
 	entities[CharacterParts.weapon] = weapon
-	entities[CharacterParts.body] = character
 
 	move = Move(entities)
 

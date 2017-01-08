@@ -9,4 +9,7 @@ class MapEntityDisplay(DisplayHandler):
 		if self.controller.offset is not None:
 			angle += self.controller.offset.angle
 
-		return pygame.transform.rotozoom(super().display(), angle, 1)
+		display = super().display()
+
+		if display is not None:
+			return pygame.transform.rotozoom(display, angle, 1)

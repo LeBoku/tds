@@ -1,7 +1,7 @@
 from store.images import util
 
 
-def player():
+def torso():
 	img = util.createAlphaSurface((10, 4))
 	img.fill((0,0,0))
 	

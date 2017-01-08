@@ -72,7 +72,6 @@ class MapController(Controller):
 
 	def setUpPlayer(self):
 		self.player = self.addEntity(PlayerController(self))
-		self.player.setBaseImage(images.character.player())
 		self.player.setUpSubEntities()
 
 	def display(self):

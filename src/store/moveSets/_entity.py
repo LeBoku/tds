@@ -14,7 +14,11 @@ class Entity:
 		else:
 			return self.defaultOffset
 
-	def repeatFrame(self, count=1):
+	def repeatFrame(self, count=1, vector=None, angle=None):
+		if vector is not None and angle is not None:
+			self.frames.append(Offset(Vector2(vector), angle))
+			count -= 1
+
 		for i in range(count):
 			self.frames.append(self.frames[-1].copy())
 

@@ -139,13 +139,13 @@ class PlayerController(CharacterController):
 				move.listenForEnd(lambda: move.start())
 
 	def registerDodging(self):
-		pass
 		# @EventListener(pygame.locals.KEYUP, key=pygame.locals.K_LSHIFT)
 		# def dodge(event):
 		# 	movement = self.getMovementVector()
 		#
 		# 	movement.scale_to_length(15)
 		# 	self.coord += movement
+		pass
 
 	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
@@ -156,6 +156,8 @@ class PlayerController(CharacterController):
 			(-3, 1.5)]
 
 		self.coord = Vector2(500, 400)
+		self.createSubEntity(CharacterParts.torso, images.character.torso(), Vector2(0, 0))
+
 		self.createSubEntity(CharacterParts.leftHand, images.character.hand(), Vector2(-10, 0))
 		rightHand = self.createSubEntity(CharacterParts.rightHand, images.character.hand(), Vector2(10, 0))
 

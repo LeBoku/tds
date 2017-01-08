@@ -16,10 +16,11 @@ attackTypes = [
 
 
 class CharacterParts(Enum):
-	body = 0
-	leftHand = 1
-	rightHand = 2
-	weapon = 3
+	character = 0
+	torso = 1
+	leftHand = 2
+	rightHand = 3
+	weapon = 4
 
 
 class DefaultMilestones(Enum):
