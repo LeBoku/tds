@@ -20,9 +20,13 @@ from store.enums import MoveTypes, CharacterParts, attackTypes
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
-		self.speed = 5
+		self.baseSpeed = 3
+		self.runningSpeedModificator = 2
+
 		self.eventHandler = EventHandler.get()
 		self.weapon = None
+
+		self.dodgeDistance = 100
 
 		self.isStopingMovementAnimation = False
 
@@ -54,9 +58,14 @@ class PlayerController(CharacterController):
 		movement = self.getMovementVector()
 
 		if movement.length():
+			if self.eventHandler.isKeyDown(pygame.locals.K_LSHIFT):
+				speed = self.baseSpeed * self.runningSpeedModificator
+			else:
+				speed = self.baseSpeed
+
 			self.startMoveAnimation()
 
-			movement.scale_to_length(self.speed)
+			movement.scale_to_length(speed)
 			oldCord = Vector2(self.coord)
 			self.coord += movement
 				
@@ -118,6 +127,7 @@ class PlayerController(CharacterController):
 	def registerEvents(self):
 		super().registerEvents()
 		self.registerCombat()
+		self.registerDodging()
 
 	def registerCombat(self):
 		qWindow = 20
@@ -134,6 +144,15 @@ class PlayerController(CharacterController):
 			elif activeMove.framesLeft < qWindow:
 				move = self.moveSetController.getMove(self.getAttack())
 				move.listenForEnd(lambda: move.start())
+
+	def registerDodging(self):
+		pass
+		# @EventListener(pygame.locals.KEYUP, key=pygame.locals.K_LSHIFT)
+		# def dodge(event):
+		# 	movement = self.getMovementVector()
+		#
+		# 	movement.scale_to_length(15)
+		# 	self.coord += movement
 
 	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
