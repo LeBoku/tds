@@ -15,12 +15,13 @@ class Entity:
 			return self.defaultOffset
 
 	def repeatFrame(self, count=1, vector=None, angle=None):
-		if vector is not None and angle is not None:
-			self.frames.append(Offset(Vector2(vector), angle))
-			count -= 1
+		lastOffset = self.frames[-1]
+
+		vector = vector if vector is not None else lastOffset.vector
+		angle = angle if angle is not None else lastOffset.angle
 
 		for i in range(count):
-			self.frames.append(self.frames[-1].copy())
+			self.frames.append(Offset(vector, angle))
 
 	def backToDefault(self, frameCount):
 		self.animateTo(frameCount, self.defaultOffset.vector)

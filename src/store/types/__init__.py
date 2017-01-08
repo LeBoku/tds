@@ -1,3 +1,3 @@
 from .collision import Collison
-from .dicts import DotDict, Particle
+from .dicts import *
 from .offset import Offset

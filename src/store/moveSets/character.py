@@ -31,3 +31,15 @@ def walk():
 	move.mileStones[Walk.halfWay] = armSwingTime * 2
 
 	return move
+
+
+def dodge(frameCount, movementVector):
+	character = Entity()
+	character.repeatFrame(frameCount, movementVector)
+
+	entities = dict()
+	entities[CharacterParts.character] = character
+
+	move = Move(entities)
+
+	return move

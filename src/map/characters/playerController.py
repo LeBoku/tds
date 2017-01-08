@@ -5,21 +5,24 @@ from pygame.math import Vector2
 from map.characters.characterController import CharacterController
 from map.weapons import Spear
 from pygameUtil.eventHandling import EventListener, EventHandler
+
 from store import images
 from store import moveSets
+from store.types import DodgeData
 from store.enums import MoveTypes, CharacterParts, attackTypes
 
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
-		self.baseSpeed = 4
+		self.baseSpeed = 6
 		self.runningSpeedModificator = 2
 
 		self.eventHandler = EventHandler.get()
 		self.weapon = None
 
-		self.dodgeDistance = 100
+		self.dodgeDistance = 10
+		self.dodgeTime = 10
 
 		self.isStopingMovementAnimation = False
 
@@ -52,7 +55,7 @@ class PlayerController(CharacterController):
 
 		if movement.length():
 			if self.eventHandler.isKeyDown(pygame.locals.K_LSHIFT):
-				speed = self.baseSpeed * self.runningSpeedModificator
+				speed = self.baseSpeed / self.runningSpeedModificator
 			else:
 				speed = self.baseSpeed
 
@@ -139,13 +142,18 @@ class PlayerController(CharacterController):
 				move.listenForEnd(lambda: move.start())
 
 	def registerDodging(self):
-		# @EventListener(pygame.locals.KEYUP, key=pygame.locals.K_LSHIFT)
-		# def dodge(event):
-		# 	movement = self.getMovementVector()
-		#
-		# 	movement.scale_to_length(15)
-		# 	self.coord += movement
-		pass
+		@EventListener(pygame.locals.KEYDOWN, key=pygame.locals.K_LCTRL)
+		def dodge(event):
+			movement = self.getMovementVector()
+
+			if movement.length() == 0:
+				movement = Vector2(0, 1)
+
+			movement.scale_to_length(self.dodgeDistance)
+
+			dodgeMove = moveSets.character.dodge(self.dodgeTime, movement)
+			self.moveSetController.registerMove(MoveTypes.dodge, dodgeMove)
+			dodgeMove.start()
 
 	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
