@@ -1,9 +1,7 @@
-from pygame.math import Vector2
-
 from ._entity import Entity
 from ._move import Move
 
-from .milestones import Attack, Walk
+from .milestones import Attack
 from store.enums import CharacterParts
 
 

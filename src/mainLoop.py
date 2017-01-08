@@ -15,7 +15,7 @@ display = pygame.display.set_mode(config.resolution)
 clock = pygame.time.Clock()
 eventHandler = EventHandler.get()
 
-map = MapController()
+mapController = MapController()
 
 
 def mainLoop():
@@ -23,7 +23,7 @@ def mainLoop():
 		eventHandler.postCustomEvents()
 		eventHandler.handleEvents()
 
-		mapDisplay = map.display()
+		mapDisplay = mapController.display()
 
 		clock.tick(config.fps)
 		display.blit(mapDisplay, (0, 0))
@@ -36,5 +36,5 @@ def mainLoop():
 
 @EventListener(pygame.locals.QUIT)
 def onClose(event):
-    pygame.quit()
-    sys.exit()
+	pygame.quit()
+	sys.exit()

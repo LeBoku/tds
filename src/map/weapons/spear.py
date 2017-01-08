@@ -1,7 +1,5 @@
 from .weapon import Weapon
 
-from store.moveSetController import MoveSetController
-
 from store.enums import MoveTypes
 from store.images.weapons import spear as spearImage
 from store.moveSets import spear as spearMoves

@@ -2,25 +2,18 @@ import pygame.locals
 import pygame.mouse
 from pygame.math import Vector2
 
-from map.characterController import CharacterController
-
-from pygameUtil.eventHandling import EventListener, EventHandler
-from pygameUtil import math_
-
-from map.subEntity import SubEntity
-
+from map.characters.characterController import CharacterController
 from map.weapons import Spear
-
+from pygameUtil.eventHandling import EventListener, EventHandler
 from store import images
 from store import moveSets
-from store import collisionPoints
 from store.enums import MoveTypes, CharacterParts, attackTypes
 
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
-		self.baseSpeed = 3
+		self.baseSpeed = 4
 		self.runningSpeedModificator = 2
 
 		self.eventHandler = EventHandler.get()

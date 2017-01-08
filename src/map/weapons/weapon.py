@@ -1,6 +1,5 @@
+from map.characters.characterController import CharacterController
 from map.subEntity import SubEntity
-from map.characterController import CharacterController
-
 from store.types import Particle
 
 
