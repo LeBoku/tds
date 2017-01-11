@@ -1,3 +1,4 @@
+from pygame import Rect
 from pygame.math import Vector2
 
 from map.base.controller import Controller
@@ -8,6 +9,8 @@ from pygameUtil import imageHelper
 from map.map.mapDisplay import MapDisplay
 from map.mapEntityController import MapEntityController
 from map.characters.playerController import PlayerController
+
+from map.props.boundry import Boundry
 
 from store import images
 from store.types.dicts import Particle, DotDict
@@ -39,13 +42,11 @@ class MapController(Controller):
 	def addParticle(self, particle):
 		self.particles.append(particle)
 
-	def addCollisionEntity(self, entity, collisionPoints):
-		entity.collisionPoints = collisionPoints
+	def addCollisionEntity(self, entity):
 		self.collisionEntities.append(entity)
 
 	def isCollidingWithSomeThing(self, initiator):
-		collisionResult = DotDict(isColliding = False, 
-			collisions=[])
+		collisionResult = DotDict(isColliding=False, collisions=[])
 
 		for entity in self.collisionEntities:
 			if entity is not None:
@@ -63,12 +64,36 @@ class MapController(Controller):
 		box = self.addEntity(MapEntityController(self))
 		box.setBaseImage(images.props.crate())
 		box.coord = Vector2(400, 400)
-		self.addCollisionEntity(box, [(-20, -20),
+		box.collisionPoints = [
+			(-20, -20),
 			(20, -20),
 			(20, 20),
-			(-20, 20)])
+			(-20, 20)
+		]
 
+		self.addCollisionEntity(box)
+
+		self.setUpBoundry()
 		self.setUpPlayer()
+
+	def setUpBoundry(self):
+		boundryWidth = 15
+
+		boundryRects = [
+			Rect((0, 0), (config.mapBounds[0], boundryWidth)),
+			Rect((0, 0), (boundryWidth, config.mapBounds[1])),
+			Rect((config.mapBounds[0] - boundryWidth, 0), (boundryWidth, 2000)),
+			Rect((0, config.mapBounds[1]-boundryWidth), (config.mapBounds[0], boundryWidth))
+		]
+
+		color = (0, 0, 0)
+		boundries = []
+
+		for boundry in boundryRects:
+			boundries.append(Boundry(self, boundry, color))
+
+		for boundry in boundries:
+			self.addEntity(boundry)
 
 	def setUpPlayer(self):
 		self.player = self.addEntity(PlayerController(self))
