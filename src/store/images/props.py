@@ -6,3 +6,8 @@ def crate():
 	img.fill((0,255,0))
 	
 	return img
+
+
+def boundry(rect, color):
+	return util.createSurface(rect.size, color)
+

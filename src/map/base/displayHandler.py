@@ -2,7 +2,7 @@ class DisplayHandler:
 	def __init__(self, controller):
 		self.controller = controller
 		self.baseImage = None
-
+		self.needsCopy = True
 		self.setUpBaseImage()
 
 	@property
@@ -14,4 +14,9 @@ class DisplayHandler:
 
 	def display(self):
 		if self.baseImage is not None:
-			return self.baseImage.copy()
+			if self.needsCopy:
+				image = self.baseImage.copy()
+			else:
+				image = self.baseImage
+
+			return image

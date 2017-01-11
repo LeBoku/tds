@@ -142,18 +142,19 @@ class PlayerController(CharacterController):
 				move.listenForEnd(lambda: move.start())
 
 	def registerDodging(self):
-		@EventListener(pygame.locals.KEYDOWN, key=pygame.locals.K_LCTRL)
-		def dodge(event):
-			movement = self.getMovementVector()
+		if "doging" is "needed":
+			@EventListener(pygame.locals.KEYDOWN, key=pygame.locals.K_LCTRL)
+			def dodge(event):
+				movement = self.getMovementVector()
 
-			if movement.length() == 0:
-				movement = Vector2(0, 1)
+				if movement.length() == 0:
+					movement = Vector2(0, 1)
 
-			movement.scale_to_length(self.dodgeDistance)
+				movement.scale_to_length(self.dodgeDistance)
 
-			dodgeMove = moveSets.character.dodge(self.dodgeTime, movement)
-			self.moveSetController.registerMove(MoveTypes.dodge, dodgeMove)
-			dodgeMove.start()
+				dodgeMove = moveSets.character.dodge(self.dodgeTime, movement)
+				self.moveSetController.registerMove(MoveTypes.dodge, dodgeMove)
+				dodgeMove.start()
 
 	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())

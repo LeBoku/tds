@@ -12,4 +12,7 @@ class MapEntityDisplay(DisplayHandler):
 		display = super().display()
 
 		if display is not None:
-			return pygame.transform.rotozoom(display, angle, 1)
+			if angle != 0:
+				return pygame.transform.rotozoom(display, angle, 1)
+			else:
+				return display
