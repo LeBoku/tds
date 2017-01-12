@@ -9,6 +9,7 @@ from pygameUtil import imageHelper
 from map.map.mapDisplay import MapDisplay
 from map.mapEntityController import MapEntityController
 from map.characters.playerController import PlayerController
+from map.characters.enemyController import EnemyController
 
 from map.props.boundry import Boundry
 
@@ -75,6 +76,9 @@ class MapController(Controller):
 
 		self.player = self.addEntity(PlayerController(self))
 		self.player.coord = Vector2(500, 400)
+
+		enemy = EnemyController(self)
+		enemy.coord = Vector2(500, 300)
 
 		self.setUpBoundry()
 
