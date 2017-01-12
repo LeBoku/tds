@@ -8,8 +8,7 @@ from pygameUtil.eventHandling import EventListener, EventHandler
 
 from store import images
 from store import moveSets
-from store.types import DodgeData
-from store.enums import MoveTypes, CharacterParts, attackTypes
+from store.enums import MoveTypes, CharacterParts
 
 
 class PlayerController(CharacterController):
@@ -17,12 +16,7 @@ class PlayerController(CharacterController):
 		super().__init__(map)
 		self.baseSpeed = 6
 		self.runningSpeedModificator = 2
-
 		self.eventHandler = EventHandler.get()
-		self.weapon = None
-
-		self.dodgeDistance = 10
-		self.dodgeTime = 10
 
 		self.isStopingMovementAnimation = False
 
@@ -100,22 +94,6 @@ class PlayerController(CharacterController):
 
 		return attack
 
-	def getActiveAttackMove(self):
-		for attack in attackTypes:
-			move = self.moveSetController.getMove(attack)
-			if move.isActive:
-				return move
-
-	def startMoveAnimation(self):
-		move = self.moveSetController.getMove(MoveTypes.walk)
-		if not move.isActive:
-			move.start()
-
-	def stopMoveAnimation(self):
-		move = self.moveSetController.getMove(MoveTypes.walk)
-		if not self.isStopingMovementAnimation:
-			move.listenForMilestone(moveSets.milestones.Walk.halfWay, lambda: move.stop())
-
 	def updateAngle(self):
 		mousePosVector = Vector2(pygame.mouse.get_pos())
 		self.angle = (mousePosVector - self.coord).angle_to(Vector2(0, -1)) % 360
@@ -123,7 +101,6 @@ class PlayerController(CharacterController):
 	def registerEvents(self):
 		super().registerEvents()
 		self.registerCombat()
-		self.registerDodging()
 
 	def registerCombat(self):
 		qWindow = 20
@@ -141,34 +118,7 @@ class PlayerController(CharacterController):
 				move = self.moveSetController.getMove(self.getAttack())
 				move.listenForEnd(lambda: move.start())
 
-	def registerDodging(self):
-		if "doging" is "needed":
-			@EventListener(pygame.locals.KEYDOWN, key=pygame.locals.K_LCTRL)
-			def dodge(event):
-				movement = self.getMovementVector()
-
-				if movement.length() == 0:
-					movement = Vector2(0, 1)
-
-				movement.scale_to_length(self.dodgeDistance)
-
-				dodgeMove = moveSets.character.dodge(self.dodgeTime, movement)
-				self.moveSetController.registerMove(MoveTypes.dodge, dodgeMove)
-				dodgeMove.start()
-
 	def setUpSubEntities(self):
-		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
-
-		self.collisionPoints = [(-3, -1.5),
-			(3, -1.5),
-			(3, 1.5),
-			(-3, 1.5)]
-
-		self.coord = Vector2(500, 400)
-		self.createSubEntity(CharacterParts.torso, images.character.torso(), Vector2(0, 0))
-
-		self.createSubEntity(CharacterParts.leftHand, images.character.hand(), Vector2(-10, 0))
-		rightHand = self.createSubEntity(CharacterParts.rightHand, images.character.hand(), Vector2(10, 0))
-
-		self.weapon = Spear(CharacterParts.weapon, rightHand)
+		super().setUpSubEntities()
+		self.weapon = Spear(CharacterParts.weapon, self.rightHand)
 		self.weapon.setUpWeaponMoveSet()

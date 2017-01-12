@@ -73,8 +73,10 @@ class MapController(Controller):
 
 		self.addCollisionEntity(box)
 
+		self.player = self.addEntity(PlayerController(self))
+		self.player.coord = Vector2(500, 400)
+
 		self.setUpBoundry()
-		self.setUpPlayer()
 
 	def setUpBoundry(self):
 		boundryWidth = 15
@@ -94,10 +96,6 @@ class MapController(Controller):
 
 		for boundry in boundries:
 			self.addEntity(boundry)
-
-	def setUpPlayer(self):
-		self.player = self.addEntity(PlayerController(self))
-		self.player.setUpSubEntities()
 
 	def display(self):
 		display = self.displayHandler.display()
