@@ -121,4 +121,4 @@ class PlayerController(CharacterController):
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
 		self.weapon = LongSword(CharacterParts.weapon, self.rightHand)
-		# self.weapon.offset = Offset((0, -15))
+		self.weapon.offsetVector = Vector2((0, -15))

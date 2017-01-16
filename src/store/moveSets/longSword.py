@@ -19,15 +19,8 @@ def rightAttack():
 	rightHand.repeatFrame(15)
 	rightHand.backToDefault(10)
 
-	weapon = Entity()
-	weapon.animateTo(5, (0, -10))
-	weapon.repeatFrame(40)
-	weapon.backToDefault(5)
-	weapon.repeatFrame(5)
-
 	entities = dict()
 	entities[CharacterParts.rightHand] = rightHand
-	entities[CharacterParts.weapon] = weapon
 
 	move = Move(entities)
 
@@ -50,15 +43,8 @@ def leftAttack():
 	rightHand.backToDefault(20)
 	# #AllPlanned rotates the wrong way but its cool. correct would be: rightHand.rotateAround(10, -100, (-10, 0))
 
-	weapon = Entity()
-	weapon.repeatFrame(30)
-	weapon.animateTo(5, (0, -10))
-	weapon.repeatFrame(20)
-	weapon.backToDefault(20)
-
 	entities = dict()
 	entities[CharacterParts.rightHand] = rightHand
-	entities[CharacterParts.weapon] = weapon
 
 	move = Move(entities)
 
@@ -98,7 +84,6 @@ def forwardAttack():
 	entities[CharacterParts.torso] = torso
 	entities[CharacterParts.rightHand] = rightHand
 	entities[CharacterParts.leftHand] = leftHand
-	# entities[CharacterParts.weapon] = weapon
 
 	move = Move(entities)
 
