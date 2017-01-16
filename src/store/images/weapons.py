@@ -15,3 +15,13 @@ def spear():
 	pygame.draw.rect(spearImage, color, pygame.Rect((1, 10), (4, 2)))
 
 	return spearImage
+
+
+def longSword():
+	color = (0, 0, 0)
+
+	swordImage = util.createAlphaSurface((8, 40))
+	pygame.draw.rect(swordImage, color, pygame.Rect((3, 0), (2, 40)))
+	pygame.draw.rect(swordImage, color, pygame.Rect((0, 30), (8, 2)))
+
+	return swordImage

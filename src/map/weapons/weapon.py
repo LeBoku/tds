@@ -5,12 +5,14 @@ from store.types import Particle
 
 class Weapon(SubEntity):
 	def __init__(self, name, parent: CharacterController):
+		super().__init__(parent.map)
 		self.name = name
 		self.parent = parent
 		self.character = parent.parent
-		super().__init__(parent.map)
 
 		self.setUpCollisionPoints()
+		self.setUpWeaponMoveSet()
+
 		self.lastAttackParticle = None
 
 		parent.addSubEntity(name, self)
@@ -18,7 +20,7 @@ class Weapon(SubEntity):
 	def setUpCollisionPoints(self):
 		pass
 
-	def setUpWeaponMoveSet(self, moveSetController):
+	def setUpWeaponMoveSet(self):
 		pass
 
 	def display(self):

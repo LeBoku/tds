@@ -3,11 +3,11 @@ import pygame.mouse
 from pygame.math import Vector2
 
 from map.characters.characterController import CharacterController
-from map.weapons import Spear
+from map.weapons import Spear, LongSword
 from pygameUtil.eventHandling import EventListener, EventHandler
 
-from store import images
 from store import moveSets
+from store.types import Offset
 from store.enums import MoveTypes, CharacterParts
 
 
@@ -120,5 +120,5 @@ class PlayerController(CharacterController):
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
-		self.weapon = Spear(CharacterParts.weapon, self.rightHand)
-		self.weapon.setUpWeaponMoveSet()
+		self.weapon = LongSword(CharacterParts.weapon, self.rightHand)
+		# self.weapon.offset = Offset((0, -15))

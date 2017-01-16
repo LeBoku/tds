@@ -13,6 +13,20 @@ class SubEntity(MapEntityController):
 		self._moveSetController = None
 
 	@property
+	def depth(self):
+		depth = 1
+		parent = self.parent
+
+		while parent is not None:
+			depth += 1
+			if hasattr(parent, "parent"):
+				parent = parent.parent
+			else:
+				break
+
+		return depth
+
+	@property
 	def moveSetController(self):
 		if self._moveSetController is None:
 			return self.parent.moveSetController
@@ -24,13 +38,13 @@ class SubEntity(MapEntityController):
 		self._moveSetController = controller
 
 	def alignToParent(self):
-		offset = self.parent.moveSetController.getOffsetForEntity(self.name)
+		offset = self.moveSetController.getOffsetForEntity(self.name)
 		baseOffset = self.offsetVector + offset.vector
 
-		characterAngle = self.parent.angle
-		offsetVector = baseOffset.rotate(180 - characterAngle)
+		parent_angle = self.parent.angle
+		offsetVector = baseOffset.rotate(180 - parent_angle)
 
-		self.coord = self.parent.coord - offsetVector
+		self.coord = self.parent.coord + offsetVector
 		self.angle = self.parent.angle + self.offsetAngle + offset.angle
 
 	def loopCall(self):
