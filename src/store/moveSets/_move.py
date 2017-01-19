@@ -64,6 +64,9 @@ class Move:
 	
 		return self
 
+	def hasPassedMileStone(self, mileStone):
+		return self.mileStones[mileStone] < self.activeFrameNr
+
 	def listenForMilestone(self, mileStone, listener):
 		if mileStone not in self.activeFrameListeners:
 			self.activeFrameListeners[mileStone] = []

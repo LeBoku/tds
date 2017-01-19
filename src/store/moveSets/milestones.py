@@ -7,6 +7,7 @@ class Default(Enum):
 
 class Attack(Enum):
 	woundUp = 2
+	attackOver = 3
 	attacked = 4
 	cooledDown = 6
 

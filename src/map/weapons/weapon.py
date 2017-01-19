@@ -4,11 +4,11 @@ from store.types import Particle
 
 
 class Weapon(SubEntity):
-	def __init__(self, name, parent: CharacterController):
+	def __init__(self, name, parent, character: CharacterController):
 		super().__init__(parent.map)
 		self.name = name
 		self.parent = parent
-		self.character = parent.parent
+		self.character = character
 
 		self.setUpCollisionPoints()
 		self.setUpWeaponMoveSet()

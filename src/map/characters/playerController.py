@@ -3,11 +3,10 @@ import pygame.mouse
 from pygame.math import Vector2
 
 from map.characters.characterController import CharacterController
-from map.weapons import Spear, LongSword
+from map.weapons import LongSword
 from pygameUtil.eventHandling import EventListener, EventHandler
 
 from store import moveSets
-from store.types import Offset
 from store.enums import MoveTypes, CharacterParts
 
 
@@ -114,11 +113,14 @@ class PlayerController(CharacterController):
 				move.listenForMilestone(moveSets.milestones.Attack.woundUp, lambda: self.lockMovement())
 				move.listenForMilestone(moveSets.milestones.Attack.attacked, lambda: self.unlockMovement())
 
-			elif activeMove.framesLeft < qWindow:
-				move = self.moveSetController.getMove(self.getAttack())
-				move.listenForEnd(lambda: move.start())
+			elif activeMove.hasPassedMileStone(moveSets.milestones.Attack.attackOver):
+				activeMove.listenForEnd(lambda: self.startQedMove())
+
+	def startQedMove(self):
+		move = self.moveSetController.getMove(self.getAttack())
+		move.start()
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
-		self.weapon = LongSword(CharacterParts.weapon, self.rightHand)
+		self.weapon = LongSword(CharacterParts.weapon, self.rightHand, self)
 		self.weapon.offsetVector = Vector2((0, -15))

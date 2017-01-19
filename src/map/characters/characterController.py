@@ -60,8 +60,8 @@ class CharacterController(MapEntityController):
 
 		self.torso = self.createSubEntity(CharacterParts.torso, images.character.torso(), Vector2(0, 0))
 
-		self.leftHand = self.createSubEntity(CharacterParts.leftHand, images.character.hand(), Vector2(-10, 0))
-		self.rightHand = self.createSubEntity(CharacterParts.rightHand, images.character.hand(), Vector2(10, 0))
+		self.leftHand = self.createSubEntity(CharacterParts.leftHand, images.character.hand(), Vector2(-10, 0), self.torso)
+		self.rightHand = self.createSubEntity(CharacterParts.rightHand, images.character.hand(), Vector2(10, 0), self.torso)
 
 	def loopCall(self):
 		self.moveSetController.moveOn()

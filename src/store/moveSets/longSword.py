@@ -8,6 +8,7 @@ from store.enums import CharacterParts
 def rightAttack():
 	milestones = {
 		Attack.woundUp: 20,
+		Attack.attackOver: 25,
 		Attack.attacked: 40,
 		Attack.cooledDown: 50
 	}
@@ -31,8 +32,9 @@ def rightAttack():
 def leftAttack():
 	milestones = {
 		Attack.woundUp: 30,
-		Attack.attacked: 40,
-		Attack.cooledDown: 65
+		Attack.attackOver: 40,
+		Attack.attacked: 65,
+		Attack.cooledDown: 85
 	}
 
 	rightHand = Entity()
@@ -40,8 +42,7 @@ def leftAttack():
 	rightHand.repeatFrame(15)
 	rightHand.rotateAround(10, 300, (-10, 0))
 	rightHand.repeatFrame(15)
-	rightHand.backToDefault(20)
-	# #AllPlanned rotates the wrong way but its cool. correct would be: rightHand.rotateAround(10, -100, (-10, 0))
+	rightHand.rotateAround(10, -100, (-10, 0))
 
 	entities = dict()
 	entities[CharacterParts.rightHand] = rightHand
@@ -56,6 +57,7 @@ def leftAttack():
 def forwardAttack():
 	milestones = {
 		Attack.woundUp: 10,
+		Attack.attackOver: 15,
 		Attack.attacked: 30,
 		Attack.cooledDown: 35
 	}
