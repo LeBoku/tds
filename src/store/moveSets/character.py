@@ -1,9 +1,5 @@
-from ._entity import Entity
-from ._move import Move
-
-from .milestones import Walk
-
-from store.enums import CharacterParts
+from store.enums import CharacterParts, WalkMilestones
+from store.types import Entity, Move
 
 
 def walk():
@@ -28,7 +24,7 @@ def walk():
 
 	move = Move(entities)
 
-	move.mileStones[Walk.halfWay] = armSwingTime * 2
+	move.mileStones[WalkMilestones.halfWay] = armSwingTime * 2
 
 	return move
 

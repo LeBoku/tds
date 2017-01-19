@@ -59,9 +59,6 @@ class MapEntityController(Controller):
 		self.subEntities[name] = entity
 		self.map.addEntity(entity)
 
-	def setUpDisplayHandler(self):
-		self.displayHandler = MapEntityDisplay(self)
-
 	def createSubEntity(self, name, image, offset=Vector2(0,0), parent=None):
 		if parent is None:
 			parent = self
@@ -73,5 +70,8 @@ class MapEntityController(Controller):
 		parent.addSubEntity(name, e)
 
 		return e
+
+	def setUpDisplayHandler(self):
+		self.displayHandler = MapEntityDisplay(self)
 
 from map.subEntity import SubEntity # down here because of circular dependency

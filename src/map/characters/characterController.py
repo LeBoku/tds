@@ -3,27 +3,24 @@ from pygame.math import Vector2
 from map.mapEntityController import MapEntityController
 
 from store.moveSetController import MoveSetController
-from store import moveSets
-from store import images
-from store.moveSets import milestones
-from store.enums import CharacterParts, attackTypes, MoveTypes
+from store import moveSets,images
+from store.enums import CharacterParts, attackTypes, MoveTypes, AttackMilestones, DefaultMilestones, WalkMilestones
 
 
 class CharacterController(MapEntityController):
 	def __init__(self, map):
 		super().__init__(map)
-		self._weapon = None
-
 		self.isAttacking = False
 
+		self.moveSetController = None
+		self.setUpMoveSetController()
+
 		self.moveSetEntityName = CharacterParts.character
-		self.moveSetController = MoveSetController()
 
 		self.torso = None
 		self.leftHand = None
 		self.rightHand = None
 		self.weapon = None
-
 		self.setUpSubEntities()
 
 	def dealWithMoveOffset(self):
@@ -48,7 +45,10 @@ class CharacterController(MapEntityController):
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove(MoveTypes.walk)
 		if not self.isStopingMovementAnimation:
-			move.listenForMilestone(milestones.Walk.halfWay, lambda: move.stop())
+			move.listenForMilestone(WalkMilestones.halfWay, lambda: move.stop())
+
+	def setUpMoveSetController(self):
+		self.moveSetController = MoveSetController()
 
 	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())

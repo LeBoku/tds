@@ -7,7 +7,7 @@ from map.weapons import LongSword
 from pygameUtil.eventHandling import EventListener, EventHandler
 
 from store import moveSets
-from store.enums import MoveTypes, CharacterParts
+from store.enums import MoveTypes, CharacterParts, AttackMilestones
 
 
 class PlayerController(CharacterController):
@@ -97,8 +97,8 @@ class PlayerController(CharacterController):
 		mousePosVector = Vector2(pygame.mouse.get_pos())
 		self.angle = (mousePosVector - self.coord).angle_to(Vector2(0, -1)) % 360
 
-	def registerEvents(self):
-		super().registerEvents()
+	def setUpEventListeners(self):
+		super().setUpEventListeners()
 		self.registerCombat()
 
 	def registerCombat(self):
@@ -110,10 +110,10 @@ class PlayerController(CharacterController):
 			if activeMove is None:
 				move = self.moveSetController.getMove(self.getAttack())
 				move.start()
-				move.listenForMilestone(moveSets.milestones.Attack.woundUp, lambda: self.lockMovement())
-				move.listenForMilestone(moveSets.milestones.Attack.attacked, lambda: self.unlockMovement())
+				move.listenForMilestone(AttackMilestones.woundUp, lambda: self.lockMovement())
+				move.listenForMilestone(AttackMilestones.attacked, lambda: self.unlockMovement())
 
-			elif activeMove.hasPassedMileStone(moveSets.milestones.Attack.attackOver):
+			elif activeMove.hasPassedMileStone(AttackMilestones.attackOver):
 				activeMove.listenForEnd(lambda: self.startQedMove())
 
 	def startQedMove(self):

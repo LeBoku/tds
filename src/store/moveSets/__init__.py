@@ -1,1 +1,1 @@
-from . import character, spear, milestones, longSword
+from . import character, spear, longSword

@@ -1,4 +1,4 @@
-from . import milestones
+from store.enums import DefaultMilestones
 
 
 class Move:
@@ -15,7 +15,7 @@ class Move:
 		self.initActiveFrameData()
 
 		self.mileStones = {
-			milestones.Default.end: self.moveLength + 1 # #not called by its frame Number
+			DefaultMilestones.end: self.moveLength + 1 # #not called by its frame Number
 		}
 
 	def initMoveLength(self):
@@ -54,8 +54,8 @@ class Move:
 
 	def stop(self, callEndListeners=False):
 		listeners = []
-		if callEndListeners and milestones.Default.end in self.activeFrameListeners:
-			listeners = self.activeFrameListeners[milestones.Default.end].copy()
+		if callEndListeners and DefaultMilestones.end in self.activeFrameListeners:
+			listeners = self.activeFrameListeners[DefaultMilestones.end].copy()
 
 		self.initActiveFrameData()
 	
@@ -74,7 +74,7 @@ class Move:
 		self.activeFrameListeners[mileStone].append(listener)
 
 	def listenForEnd(self, listener):
-		self.listenForMilestone(milestones.Default.end, listener)
+		self.listenForMilestone(DefaultMilestones.end, listener)
 
 	def moveOn(self):
 		if self.isActive:

@@ -1,16 +1,13 @@
-from ._entity import Entity
-from ._move import Move
-
-from .milestones import Attack
-from store.enums import CharacterParts
+from store.enums import CharacterParts, AttackMilestones
+from store.types import Entity, Move
 
 
 def rightAttack():
 	milestones = {
-		Attack.woundUp: 20,
-		Attack.attackOver: 25,
-		Attack.attacked: 40,
-		Attack.cooledDown: 50
+		AttackMilestones.woundUp: 20,
+		AttackMilestones.attackOver: 25,
+		AttackMilestones.attacked: 40,
+		AttackMilestones.cooledDown: 50
 	}
 
 	rightHand = Entity()
@@ -31,10 +28,10 @@ def rightAttack():
 
 def leftAttack():
 	milestones = {
-		Attack.woundUp: 30,
-		Attack.attackOver: 40,
-		Attack.attacked: 65,
-		Attack.cooledDown: 85
+		AttackMilestones.woundUp: 30,
+		AttackMilestones.attackOver: 40,
+		AttackMilestones.attacked: 65,
+		AttackMilestones.cooledDown: 85
 	}
 
 	rightHand = Entity()
@@ -56,10 +53,10 @@ def leftAttack():
 
 def forwardAttack():
 	milestones = {
-		Attack.woundUp: 10,
-		Attack.attackOver: 15,
-		Attack.attacked: 30,
-		Attack.cooledDown: 35
+		AttackMilestones.woundUp: 10,
+		AttackMilestones.attackOver: 15,
+		AttackMilestones.attacked: 30,
+		AttackMilestones.cooledDown: 35
 	}
 
 	rightHand = Entity()

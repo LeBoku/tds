@@ -1,5 +1,7 @@
-from .characterController import CharacterController
+from .NPCController import NPCController
+from map.ais.enemyAi import EnemyAi
 
 
-class EnemyController(CharacterController):
-	pass
+class EnemyController(NPCController):
+	def setUpAI(self):
+		self.ai = EnemyAi(self)
