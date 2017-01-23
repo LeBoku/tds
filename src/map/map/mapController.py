@@ -1,22 +1,17 @@
 from pygame import Rect
 from pygame.math import Vector2
 
-from map.base.controller import Controller
+import config
 from config import mapBounds
-
-from pygameUtil import imageHelper
-
+from map.base.controller import Controller
+from map.characters.enemy.enemyController import EnemyController
+from map.characters.player.playerController import PlayerController
 from map.map.mapDisplay import MapDisplay
 from map.mapEntityController import MapEntityController
-from map.characters.playerController import PlayerController
-from map.characters.enemyController import EnemyController
-
 from map.props.boundry import Boundry
-
+from pygameUtil import imageHelper
 from store import images
 from store.types.dicts import Particle, DotDict
-
-import config
 
 
 class MapController(Controller):
@@ -77,7 +72,7 @@ class MapController(Controller):
 		self.player = self.addEntity(PlayerController(self))
 		self.player.coord = Vector2(500, 400)
 
-		enemy = EnemyController(self)
+		enemy = self.addEntity(EnemyController(self))
 		enemy.coord = Vector2(500, 300)
 
 		self.setUpBoundry()

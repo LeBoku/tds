@@ -12,6 +12,7 @@ class Weapon(SubEntity):
 
 		self.setUpCollisionPoints()
 		self.setUpWeaponMoveSet()
+		self.setUpOffset()
 
 		self.lastAttackParticle = None
 
@@ -21,6 +22,9 @@ class Weapon(SubEntity):
 		pass
 
 	def setUpWeaponMoveSet(self):
+		pass
+
+	def setUpOffset(self):
 		pass
 
 	def display(self):

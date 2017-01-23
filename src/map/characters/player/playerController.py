@@ -6,18 +6,13 @@ from map.characters.characterController import CharacterController
 from map.weapons import LongSword
 from pygameUtil.eventHandling import EventListener, EventHandler
 
-from store import moveSets
 from store.enums import MoveTypes, CharacterParts, AttackMilestones
 
 
 class PlayerController(CharacterController):
 	def __init__(self, map):
 		super().__init__(map)
-		self.baseSpeed = 6
-		self.runningSpeedModificator = 2
 		self.eventHandler = EventHandler.get()
-
-		self.isStopingMovementAnimation = False
 
 		self.movementKeys = {
 			pygame.locals.K_w: ["y", -1],
@@ -25,6 +20,14 @@ class PlayerController(CharacterController):
 			pygame.locals.K_s: ["y", 1],
 			pygame.locals.K_a: ["x", -1]
 		}
+
+	@property
+	def isRunning(self):
+		return not self.eventHandler.isKeyDown(pygame.locals.K_LSHIFT)
+
+	@isRunning.setter
+	def isRunning(self, value):
+		pass
 
 	def lockMovement(self):
 		self.isAttacking = True
@@ -47,14 +50,9 @@ class PlayerController(CharacterController):
 		movement = self.getMovementVector()
 
 		if movement.length():
-			if self.eventHandler.isKeyDown(pygame.locals.K_LSHIFT):
-				speed = self.baseSpeed / self.runningSpeedModificator
-			else:
-				speed = self.baseSpeed
-
 			self.startMoveAnimation()
 
-			movement.scale_to_length(speed)
+			movement.scale_to_length(self.speed)
 			oldCord = Vector2(self.coord)
 			self.coord += movement
 				
@@ -102,8 +100,6 @@ class PlayerController(CharacterController):
 		self.registerCombat()
 
 	def registerCombat(self):
-		qWindow = 20
-	
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
 			activeMove = self.getActiveAttackMove()
@@ -114,13 +110,12 @@ class PlayerController(CharacterController):
 				move.listenForMilestone(AttackMilestones.attacked, lambda: self.unlockMovement())
 
 			elif activeMove.hasPassedMileStone(AttackMilestones.attackOver):
-				activeMove.listenForEnd(lambda: self.startQedMove())
-
-	def startQedMove(self):
-		move = self.moveSetController.getMove(self.getAttack())
-		move.start()
+				activeMove.listenForEnd(lambda: self._startQedMove())
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
 		self.weapon = LongSword(CharacterParts.weapon, self.rightHand, self)
-		self.weapon.offsetVector = Vector2((0, -15))
+
+	def _startQedMove(self):
+		move = self.moveSetController.getMove(self.getAttack())
+		move.start()

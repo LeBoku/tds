@@ -10,7 +10,12 @@ from store.enums import CharacterParts, attackTypes, MoveTypes, AttackMilestones
 class CharacterController(MapEntityController):
 	def __init__(self, map):
 		super().__init__(map)
+		self.baseSpeed = 3
+		self.runningSpeedModificator = 2
+		self.isRunning = True
+
 		self.isAttacking = False
+		self.isStopingMovementAnimation = False
 
 		self.moveSetController = None
 		self.setUpMoveSetController()
@@ -22,6 +27,10 @@ class CharacterController(MapEntityController):
 		self.rightHand = None
 		self.weapon = None
 		self.setUpSubEntities()
+
+	@property
+	def speed(self):
+		return self.baseSpeed if not self.isRunning else self.baseSpeed * self.runningSpeedModificator
 
 	def dealWithMoveOffset(self):
 		offset = self.moveSetController.getOffsetForEntity(self.moveSetEntityName)
@@ -49,10 +58,9 @@ class CharacterController(MapEntityController):
 
 	def setUpMoveSetController(self):
 		self.moveSetController = MoveSetController()
-
-	def setUpSubEntities(self):
 		self.moveSetController.registerMove(MoveTypes.walk, moveSets.character.walk())
 
+	def setUpSubEntities(self):
 		self.collisionPoints = [(-3, -1.5),
 			(3, -1.5),
 			(3, 1.5),

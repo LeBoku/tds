@@ -1,3 +1,5 @@
+from pygame.math import Vector2
+
 from .weapon import Weapon
 
 from store import images, moveSets, collisionPoints
@@ -5,6 +7,9 @@ from store.enums import MoveTypes
 
 
 class LongSword(Weapon):
+	def setUpOffset(self):
+		self.offsetVector = Vector2((0, -15))
+
 	def setUpBaseImage(self):
 		self.setBaseImage(images.weapons.longSword())
 
