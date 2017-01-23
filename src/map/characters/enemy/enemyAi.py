@@ -9,19 +9,13 @@ class EnemyAi(Ai):
 		self.thresholdToPlayer = 50
 
 	def loopCall(self):
-		player = self.character.map.player
+		super().loopCall()
 
-		distanceToPlayerVector = player.coord - self.character.coord
-		distanceToPlayer = distanceToPlayerVector.length()
+		self.moveTowardsPlayer()
+		self.lookTowardsPlayer()
 
-		if distanceToPlayer < self.thresholdToPlayer:
-			distanceToPlayerVector.rotate(180)
-			distanceToPlayerVector.scale_to_length(self.thresholdToPlayer - distanceToPlayer)
-			self.character.setDestination(distanceToPlayerVector)
+	def lookTowardsPlayer(self):
+		self.lookTowardsEntity(self.character.map.player)
 
-		elif distanceToPlayer > self.thresholdToPlayer:
-			distanceToPlayerVector.scale_to_length(distanceToPlayer - self.thresholdToPlayer)
-			self.character.setDestination(self.character.coord + distanceToPlayerVector)
-
-		else:
-			self.character.setDestination(None)
+	def moveTowardsPlayer(self):
+		self.moveTowardsMapEntity(self.character.map.player, self.thresholdToPlayer)

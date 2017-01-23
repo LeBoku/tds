@@ -50,11 +50,13 @@ class CharacterController(MapEntityController):
 		move = self.moveSetController.getMove(MoveTypes.walk)
 		if not move.isActive:
 			move.start()
+			self.isStopingMovementAnimation = False
 
 	def stopMoveAnimation(self):
 		move = self.moveSetController.getMove(MoveTypes.walk)
 		if not self.isStopingMovementAnimation:
 			move.listenForMilestone(WalkMilestones.halfWay, lambda: move.stop())
+			self.isStopingMovementAnimation = True
 
 	def setUpMoveSetController(self):
 		self.moveSetController = MoveSetController()
