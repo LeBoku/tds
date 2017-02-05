@@ -32,6 +32,12 @@ class DefaultMilestones(Enum):
 	end = 1
 
 
+class PerceptionTypes(Enum):
+	gainSight = 1
+	inSight = 2
+	lostSight = 3
+
+
 class AttackMilestones(Enum):
 	woundUp = 2
 	attackOver = 3

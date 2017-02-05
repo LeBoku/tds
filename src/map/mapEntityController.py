@@ -36,7 +36,7 @@ class MapEntityController(Controller):
 		initiatorPolygon = initiator.collisionPolygon
 
 		if (poly is not None and initiatorPolygon is not None) and poly.intersects(initiatorPolygon):
-			return Collison(initiator, self, initiatorPolygon, poly, poly.intersection(initiatorPolygon))
+			return Collison(initiator, self, initiatorPolygon, poly)
 
 	def calculateCollisionPolygon(self):
 		if len(self.collisionPoints) == 0:

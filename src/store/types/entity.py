@@ -1,10 +1,10 @@
 from pygame.math import Vector2
 
-from store.types import Offset
+from .offset import Offset
 
 
 class Entity:
-	def __init__(self, startVector=Vector2(0,0), startAngle=0):
+	def __init__(self, startVector=Vector2(0, 0), startAngle=0):
 		self.frames = [Offset(Vector2(startVector), startAngle)]
 		self.defaultOffset = Offset()
 

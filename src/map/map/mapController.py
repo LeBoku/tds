@@ -53,6 +53,15 @@ class MapController(Controller):
 
 		return collisionResult
 
+	def getEntitesInsideShape(self, shape):
+		entities = []
+		for entity in self.entities:
+			poly = entity.collisionPolygon
+			if poly is not None and poly.intersects(shape):
+				entities.append(entity)
+
+		return entities
+
 	def removeEntity(self, entity):
 		self.entities.remove(entity)
 	

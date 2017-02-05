@@ -13,6 +13,7 @@ class CharacterController(MapEntityController):
 		self.baseSpeed = 3
 		self.runningSpeedModificator = 2
 		self.isRunning = True
+		self.viewRange = 500
 
 		self.isAttacking = False
 		self.isStopingMovementAnimation = False

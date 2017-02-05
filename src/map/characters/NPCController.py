@@ -23,7 +23,7 @@ class NPCController(CharacterController):
 		self.destination = destination
 
 	def setUpAI(self):
-		self.ai = Ai(self)
+		self.ai = Ai(self, self.map)
 
 	def _moveTowardsDestination(self):
 		if self.destination is not None:

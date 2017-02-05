@@ -1,10 +1,36 @@
+from store.perception.eye import Eye
+
 
 class Ai:
-	def __init__(self, character):
+	def __init__(self, character, map):
 		self.character = character
+		self.map = map
+
+		self.percivers = []
+		self.setUpPercivers()
+
+		self.perceptionListeners = []
+		self.setUpPerceptionListeners()
+
+	def setUpPercivers(self):
+		self.percivers.append(Eye(self.character, self.map))
+
+	def setUpPerceptionListeners(self):
+		pass
 
 	def loopCall(self):
-		pass
+		for perception in self.percive():
+			for listener in self.perceptionListeners:
+				if listener.applies(perception):
+					listener.call(perception)
+
+	def percive(self):
+		percivedThings = []
+
+		for perciver in self.percivers:
+			percivedThings.extend(perciver.percive())
+
+		return percivedThings
 
 	def lookTowardsEntity(self, entity):
 		distance_vector = self.getDistanceVectorToMapEntity(entity)
