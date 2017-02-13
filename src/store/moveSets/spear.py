@@ -74,10 +74,11 @@ def forwardAttack():
 	rightHand = Entity()
 	rightHand.animateTo(5, (0, 15))
 	rightHand.repeatFrame(5)
-	rightHand.animateTo(5, (0, -15))
+	rightHand.animateTo(5, (0, -15), 45, True)
 	rightHand.repeatFrame(15)
+	rightHand.animateTo(5, (0, 0), 45)
 	rightHand.backToDefault(5)
-		
+
 	leftHand = Entity()
 	leftHand.animateTo(10, (0, -10))
 	leftHand.animateTo(5, (0, 10))

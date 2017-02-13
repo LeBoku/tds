@@ -3,7 +3,7 @@ import pygame.mouse
 from pygame.math import Vector2
 
 from map.characters.characterController import CharacterController
-from map.weapons import LongSword
+from map.weapons.spear import Spear
 from pygameUtil.eventHandling import EventListener, EventHandler
 
 from store.enums import MoveTypes, CharacterParts, AttackMilestones
@@ -109,12 +109,12 @@ class PlayerController(CharacterController):
 				move.listenForMilestone(AttackMilestones.woundUp, lambda: self.lockMovement())
 				move.listenForMilestone(AttackMilestones.attacked, lambda: self.unlockMovement())
 
-			elif activeMove.hasPassedMileStone(AttackMilestones.attackOver):
+			elif activeMove.hasPassedMileStone(AttackMilestones.attacked):
 				activeMove.listenForEnd(lambda: self._startQedMove())
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
-		self.weapon = LongSword(CharacterParts.weapon, self.rightHand, self)
+		self.weapon = Spear(CharacterParts.weapon, self.rightHand, self)
 
 	def _startQedMove(self):
 		move = self.moveSetController.getMove(self.getAttack())
