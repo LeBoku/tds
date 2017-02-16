@@ -3,7 +3,7 @@ import pygame.mouse
 from pygame.math import Vector2
 
 from map.characters.characterController import CharacterController
-from map.weapons.spear import Spear
+from map import weapons
 from pygameUtil.eventHandling import EventListener, EventHandler
 
 from store.enums import MoveTypes, CharacterParts, AttackMilestones
@@ -28,12 +28,6 @@ class PlayerController(CharacterController):
 	@isRunning.setter
 	def isRunning(self, value):
 		pass
-
-	def lockMovement(self):
-		self.isAttacking = True
-
-	def unlockMovement(self):
-		self.isAttacking = False
 
 	def loopCall(self):
 		super().loopCall()
@@ -74,23 +68,6 @@ class PlayerController(CharacterController):
 
 		return forwardMovement
 
-	def getAttack(self):
-		movement = self.getMovementVector()
-		if movement.length() == 0:
-			movement = Vector2(0, -1)
-		angle = (movement.angle_to(Vector2(0,-1)) + 360) % 360
-
-		if 45 < angle < 135:
-			attack = MoveTypes.attackRight
-
-		elif 225 < angle < 315:
-			attack = MoveTypes.attackLeft
-	
-		else:
-			attack = MoveTypes.attackForward
-
-		return attack
-
 	def updateAngle(self):
 		mousePosVector = Vector2(pygame.mouse.get_pos())
 		self.angle = (mousePosVector - self.coord).angle_to(Vector2(0, -1)) % 360
@@ -102,20 +79,24 @@ class PlayerController(CharacterController):
 	def registerCombat(self):
 		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=1)
 		def startAttack(event):
-			activeMove = self.getActiveAttackMove()
-			if activeMove is None:
-				move = self.moveSetController.getMove(self.getAttack())
-				move.start()
-				move.listenForMilestone(AttackMilestones.woundUp, lambda: self.lockMovement())
-				move.listenForMilestone(AttackMilestones.attacked, lambda: self.unlockMovement())
+			self._startOrQAttack(MoveTypes.attackFast)
 
-			elif activeMove.hasPassedMileStone(AttackMilestones.attacked):
-				activeMove.listenForEnd(lambda: self._startQedMove())
+		@EventListener(pygame.locals.MOUSEBUTTONDOWN, button=3)
+		def startAttack(event):
+			self._startOrQAttack(MoveTypes.attackWide)
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
-		self.weapon = Spear(CharacterParts.weapon, self.rightHand, self)
+		self.weapon = weapons.LongSword(CharacterParts.weapon, self.rightHand, self)
 
-	def _startQedMove(self):
-		move = self.moveSetController.getMove(self.getAttack())
+	def _startOrQAttack(self, attackType):
+		activeMove = self.getActiveAttackMove()
+		if activeMove is None:
+			self._startAttack(attackType)
+
+		elif activeMove.hasPassedMileStone(AttackMilestones.attacked):
+			activeMove.listenForEnd(lambda: self._startAttack(attackType))
+
+	def _startAttack(self, attackType):
+		move = self.moveSetController.getMove(attackType)
 		move.start()

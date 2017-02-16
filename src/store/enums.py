@@ -4,15 +4,13 @@ from enum import Enum
 class MoveTypes(Enum):
 	walk = 0
 	dodge = 1
-	attackForward = 2
-	attackLeft = 3
-	attackRight = 4
+	attackWide = 5
+	attackFast = 6
 
 
 attackTypes = [
-	MoveTypes.attackForward,
-	MoveTypes.attackRight,
-	MoveTypes.attackLeft
+	MoveTypes.attackFast,
+	MoveTypes.attackWide
 ]
 
 

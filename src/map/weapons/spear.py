@@ -12,6 +12,5 @@ class Spear(Weapon):
 		self.collisionPoints = collisionPoints.weapons.spear()
 
 	def setUpWeaponMoveSet(self):
-		self.moveSetController.registerMove(MoveTypes.attackForward, moveSets.spear.forwardAttack())
-		self.moveSetController.registerMove(MoveTypes.attackLeft, moveSets.spear.leftAttack())
-		self.moveSetController.registerMove(MoveTypes.attackRight, moveSets.spear.rightAttack())
+		self.moveSetController.registerMove(MoveTypes.attackFast, moveSets.spear.fastAttack())
+		self.moveSetController.registerMove(MoveTypes.attackWide, moveSets.spear.wideAttack())

@@ -14,9 +14,8 @@ class LongSword(Weapon):
 		self.setBaseImage(images.weapons.longSword())
 
 	def setUpWeaponMoveSet(self):
-		self.moveSetController.registerMove(MoveTypes.attackForward, moveSets.longSword.forwardAttack())
-		self.moveSetController.registerMove(MoveTypes.attackLeft, moveSets.longSword.leftAttack())
-		self.moveSetController.registerMove(MoveTypes.attackRight, moveSets.longSword.rightAttack())
+		self.moveSetController.registerMove(MoveTypes.attackWide, moveSets.longSword.wideAttack())
+		self.moveSetController.registerMove(MoveTypes.attackFast, moveSets.longSword.fastAttack())
 
 	def setUpCollisionPoints(self):
 		self.collisionPoints = collisionPoints.weapons.longsSword()

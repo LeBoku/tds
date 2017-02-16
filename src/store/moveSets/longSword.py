@@ -2,31 +2,7 @@ from store.enums import CharacterParts, AttackMilestones
 from store.types import Entity, Move
 
 
-def rightAttack():
-	milestones = {
-		AttackMilestones.woundUp: 20,
-		AttackMilestones.attackOver: 25,
-		AttackMilestones.attacked: 40,
-		AttackMilestones.cooledDown: 50
-	}
-
-	rightHand = Entity()
-	rightHand.animateTo(5, (5, -3), -45)
-	rightHand.repeatFrame(15)
-	rightHand.rotateAround(5, -90)
-	rightHand.repeatFrame(15)
-	rightHand.backToDefault(10)
-
-	entities = dict()
-	entities[CharacterParts.rightHand] = rightHand
-
-	move = Move(entities)
-
-	move.mileStones.update(milestones)
-	return move
-
-
-def leftAttack():
+def wideAttack():
 	milestones = {
 		AttackMilestones.woundUp: 30,
 		AttackMilestones.attackOver: 40,
@@ -51,7 +27,7 @@ def leftAttack():
 	return move
 
 
-def forwardAttack():
+def fastAttack():
 	milestones = {
 		AttackMilestones.woundUp: 10,
 		AttackMilestones.attackOver: 15,
