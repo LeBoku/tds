@@ -87,7 +87,7 @@ class PlayerController(CharacterController):
 
 	def setUpSubEntities(self):
 		super().setUpSubEntities()
-		self.weapon = weapons.LongSword(CharacterParts.weapon, self.rightHand, self)
+		self.weapon = weapons.Spear(CharacterParts.weapon, self.rightHand, self)
 
 	def _startOrQAttack(self, attackType):
 		activeMove = self.getActiveAttackMove()
