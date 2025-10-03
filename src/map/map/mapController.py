@@ -82,7 +82,7 @@ class MapController(Controller):
 		self.player.coord = Vector2(500, 400)
 
 		enemy = self.addEntity(EnemyController(self))
-		enemy.coord = Vector2(500, 300)
+		enemy.coord = Vector2(200, 200)
 
 		self.setUpBoundry()
 
